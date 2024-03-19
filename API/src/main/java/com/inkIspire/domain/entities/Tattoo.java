@@ -86,6 +86,14 @@ public class Tattoo {
         this.artUrl = artUrl;
     }
 
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

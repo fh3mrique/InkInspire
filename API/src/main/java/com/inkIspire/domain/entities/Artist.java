@@ -1,5 +1,7 @@
 package com.inkIspire.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,11 +15,14 @@ public class Artist {
     private Long id;
     private String name;
 
+    private String photo;
+
     @Column(columnDefinition = "TEXT")
     private String perfil;
     private String contact;
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "artist")
     private Set<Tattoo> tattoos = new HashSet<>();
 
@@ -39,6 +44,14 @@ public class Artist {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getPerfil() {

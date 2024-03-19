@@ -1,15 +1,18 @@
-import Tattoo from "../../assets/img/tatuagem-tatuador.png";
-import Artist from "../../assets/img/tatuador.jpeg";
 import "./styles.css";
-const TatooCard = () => {
+import { Tattoo } from "../../types/Tattoo";
+
+type Props = {
+  tattoo: Tattoo;
+};
+const TatooCard = ({ tattoo }: Props) => {
   return (
     <div className="tattoo-card">
       <div className="tattoo-card-top-container">
-        <img className="img-tatto-card" src={Tattoo} />
-        <h4>Tatuagem generica</h4>
+        <img className="img-tatto-card" src={tattoo.artUrl} />
+        <h4>{tattoo.name}</h4>
         <div className="tattoo-card-resume-artist">
-          <img src={Artist} />
-          <p>Artista nome</p>
+          <img src={tattoo.artist.photo} />
+          <p>{tattoo.artist.name}</p>
         </div>
       </div>
 
@@ -17,7 +20,7 @@ const TatooCard = () => {
         <p>Valor</p>
         <div className="tattoo-card-price-target">
           <p>
-            R$: <span>332.50</span>
+            R$: <span>{tattoo.price}</span>
           </p>
           <div>Exclusivo</div>
         </div>
