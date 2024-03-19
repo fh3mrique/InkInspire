@@ -1,0 +1,39 @@
+.nav-bar-container{
+    background-color: black;
+    padding: 20px  80px;
+    font-weight: bold;
+    font-size: 36px;
+    max-height: 80px;
+}
+
+.nav-bar-container header{
+    display: flex; 
+    justify-content: space-between;
+}
+
+.title-logo-home {
+    font-size: 0.9em;
+}
+
+.title-logo-home span{
+    color: rgb(180, 44, 44);
+}
+
+.nav-bar-container ul {
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+}
+
+.nav-bar-container ul li{
+    margin-right: 30px;
+    font-size: 0.8em;
+    color: white;
+    font-family: "Space Mono", monospace;
+    cursor: pointer;
+}
+
+.title-logo-home {
+    color: aliceblue;
+}

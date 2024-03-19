@@ -1,0 +1,75 @@
+.tattoo-card{
+    background-color: #302e2ecc;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    max-width: 400px;
+    color: white;
+    font-family: "Space Mono", monospace;
+    margin-top: 10px;
+}
+
+
+.tattoo-card-top-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.tattoo-card-top-container h4{
+    font-size: 0.8em;
+    margin-top: 15px;
+}
+
+.tattoo-card-resume-artist{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-size: 0.7em;
+}
+
+.tattoo-card-resume-artist img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.img-tatto-card{
+  width: 220px;
+  height: 220px;
+}
+
+.tattoo-card-bottom-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border-top: solid 1px rgba(92, 89, 89, 0.61);
+    width: 100%;
+    font-size: 0.6em;
+    padding: 10px;
+}
+
+.tattoo-card-bottom-container p span{
+    font-size: 1em;
+    color: rgb(194, 166, 7);
+}
+
+.tattoo-card-price-target{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tattoo-card-price-target div{
+    background-color: transparent;
+    border: solid 2px rgb(27, 110, 27);
+    padding: 10px 20px;
+    color: rgb(27, 110, 27);
+    font-size: 0.8em;
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-weight: bold;
+}

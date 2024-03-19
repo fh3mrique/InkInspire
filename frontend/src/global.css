@@ -1,0 +1,14 @@
+body {
+    background-color: #555555; /* Cor de fundo padrão */
+    /* Outras estilizações globais para o corpo */
+    background-image: linear-gradient(to right, #141e30, #243b55);
+
+    background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+
+    background-image: linear-gradient(to left, #1a1919 0%, black 100%);
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
