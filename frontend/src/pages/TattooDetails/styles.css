@@ -1,0 +1,90 @@
+.product-details-container {
+  /* background-color: white; */
+  padding: 20px;
+  font-family: "Space Mono", monospace;
+}
+
+.goback-container {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  /*     background-color: aqua; */
+  color: white;
+  margin-bottom: 20px;
+}
+
+.goback-container img {
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
+}
+
+.card-details-container {
+  display: flex;
+  justify-content: center;
+}
+.card-tattoo-details-image {
+  /*   background-color: blueviolet; */
+  background-color: rgba(39, 38, 38, 0.788);
+  padding: 10px;
+  text-align: center;
+  margin-right: 30px;
+}
+
+.card-tattoo-details-image h3 {
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+.card-tattoo-details-image img {
+  width: 80%;
+}
+.card-tattoo-details-resume {
+  background-color: rgba(39, 38, 38, 0.788);
+  font-size: 32px;
+  padding: 40px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+.img-artist-resume {
+  font-size: 25px;
+  font-weight: bold;
+}
+.artist-resume-detais img {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.artist-resume-detais p {
+  font-weight: bold;
+  color: white;
+  font-size: 0.6em;
+  font-family: "Space Mono", monospace;
+  text-transform: uppercase;
+}
+
+.artist-resume-detais p span {
+  font-weight: normal;
+  text-transform: none;
+}
+
+.tatto-description-details {
+  font-size: 0.6em;
+}
+
+.tatto-description-details p {
+  font-weight: bold;
+}
+.tatto-description-details p span {
+  font-weight: normal;
+}
+
+.price-tattoo-details {
+  color: rgb(204, 175, 10);
+  font-size: 30px;
+}

@@ -11,7 +11,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolios" element={<Portfolios />} />
-        <Route path="/portfolios/:tattooId" element={<TattooDetails />} />
+        <Route path="/portfolios/:tattooId" element={<TattooDetails/>} />
       </Routes>
     </BrowserRouter>
   );
