@@ -7,13 +7,19 @@ import { Tattoo } from "../../types/Tattoo";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../utils/request";
+import { useParams } from "react-router-dom";
 
 const TattooDetails = () => {
 
   const [tattoo, setTattoo] = useState<Tattoo>();
 
+  type UrlParams = {
+    tattooId: string;
+  };
+  const { tattooId } = useParams<UrlParams>();
+
   useEffect(() =>{
-   axios.get(BASE_URL + "/1")
+   axios.get(BASE_URL + `/${tattooId}`)
    .then(response => {
     setTattoo(response.data)
    });
