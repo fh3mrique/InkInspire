@@ -38,7 +38,8 @@
 }
 
 .card-tattoo-details-image img {
-  width: 80%;
+  width: 500px;
+  height: 500px;
 }
 .card-tattoo-details-resume {
   background-color: rgba(39, 38, 38, 0.788);
@@ -85,6 +86,7 @@
 }
 
 .price-tattoo-details {
+  margin-top: 50px;
   color: rgb(204, 175, 10);
   font-size: 30px;
 }
