@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -40,5 +42,17 @@ public class AppConfig {
                 = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource()));
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return bean;
+    }
+
+    @Bean
+    public JwtAccessTokenConverter accessTokenConverter() {
+        JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
+        tokenConverter.setSigningKey("MY-JWT-SECRET");
+        return tokenConverter;
+    }
+
+    @Bean
+    public JwtTokenStore tokenStore() {
+        return new JwtTokenStore(accessTokenConverter());
     }
 }
