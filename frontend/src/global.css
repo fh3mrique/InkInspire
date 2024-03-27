@@ -6,6 +6,8 @@ body {
     background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
 
     background-image: linear-gradient(to left, #1a1919 0%, black 100%);
+
+    background-image: aliceblue;
   }
 
   a {

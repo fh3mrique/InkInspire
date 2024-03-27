@@ -31,7 +31,7 @@ const Portfolios = () => {
       <div className="row">
         {page?.content.map((tattoo) => (
           <div className="col-sm-6 col-lg-4 col-xl-3" key={tattoo.id}>
-            <Link to="/products/1">
+            <Link to="/portfolios/1">
               <TatooCard tattoo={tattoo} />
             </Link>
           </div>

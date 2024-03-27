@@ -1,7 +1,5 @@
 import ArrowIcon from "../../assets/img/arrow.svg";
 import "./styles.css";
-import tattoimage from "../../assets/img/tatuagem-tatuador.png";
-import artist from "../../assets/img/tatuador.jpeg";
 import { formatPrice } from "../../utils/formaters";
 import { Tattoo } from "../../types/Tattoo";
 import { useEffect, useState } from "react";

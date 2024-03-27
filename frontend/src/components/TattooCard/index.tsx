@@ -1,5 +1,6 @@
 import "./styles.css";
 import { Tattoo } from "../../types/Tattoo";
+import { formatPrice } from "../../utils/formaters";
 
 type Props = {
   tattoo: Tattoo;
@@ -20,7 +21,7 @@ const TatooCard = ({ tattoo }: Props) => {
         <p>Valor</p>
         <div className="tattoo-card-price-target">
           <p>
-            R$: <span>{tattoo.price}</span>
+            R$: <span>{formatPrice(tattoo.price)}</span>
           </p>
           <div>Exclusivo</div>
         </div>
