@@ -12,7 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/tattoo")
 public class TattooResources {
 
     private TattooService service;
