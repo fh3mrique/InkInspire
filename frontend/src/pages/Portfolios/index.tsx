@@ -13,7 +13,7 @@ const Portfolios = () => {
   useEffect(() => {
     const params: AxiosParams = {
       method: "GET",
-      url: `${BASE_URL}/`,
+      url: `${BASE_URL}/tattoo`,
       params: {
         page: 0,
         size: 12,
