@@ -1,0 +1,25 @@
+.auth-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+}
+
+.auth-banner-container{
+}
+
+.auth-banner-container img{
+    height: 600px;
+    width: 460px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.auth-form-container{
+    height: 600px;
+    width: 460px;
+    margin-left: 35px;
+   
+    background-color: rgba(56, 53, 53, 0.589);
+    /* background-color: aqua; */
+}
