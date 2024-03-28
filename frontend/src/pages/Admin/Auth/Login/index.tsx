@@ -1,14 +1,19 @@
 
 import { Link } from 'react-router-dom';
 import './styles.css';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
+
+  
+
   return (
     <div className="login-card">
       <h1>LOGIN</h1>
       <form>
         <div className="mb-4">
           <input
+
             type="text"
             className="form-control base-input"
             placeholder="Email"

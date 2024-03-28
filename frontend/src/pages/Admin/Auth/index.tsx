@@ -6,7 +6,7 @@ import AuthImg from "../../../assets/img/tatuadorAuthImg.jpg";
 const Auth = () => {
   return (
     <div className="auth-container row">
-      <div className="auth-banner-container col-xl-3">
+      <div className="auth-banner-container col-xl-4">
         <img src={AuthImg} />
       </div>
       <div className="auth-form-container col-xl-4">
