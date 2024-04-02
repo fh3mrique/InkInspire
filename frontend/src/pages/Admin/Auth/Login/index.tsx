@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
 import { useForm } from "react-hook-form";
+import { requestBackendLogin } from "../../../../utils/request";
 
 type FormData = {
   username: string;
@@ -10,9 +11,15 @@ type FormData = {
 const Login = () => {
   const { register, handleSubmit } = useForm<FormData>();
 
-  const onSubmit = (formData: FormData ) => {
-    console.log(formData);
-  }
+  const onSubmit = (formData: FormData) => {
+    requestBackendLogin(formData)
+      .then((response) => {
+        console.log("SUCESSO", response);
+      })
+      .catch((error) => {
+        console.log("ERRO", error);
+      });
+  };
 
   return (
     <div className="login-card">
