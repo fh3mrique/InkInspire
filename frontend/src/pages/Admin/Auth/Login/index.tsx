@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 import { useForm } from "react-hook-form";
 import { requestBackendLogin } from "../../../../utils/request";
+import { useState } from "react";
 
 type FormData = {
   username: string;
@@ -11,12 +12,16 @@ type FormData = {
 const Login = () => {
   const { register, handleSubmit } = useForm<FormData>();
 
+  const [hasError, setHasError] = useState(false);
+
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
+        setHasError(false);
         console.log("SUCESSO", response);
       })
       .catch((error) => {
+        setHasError(true);
         console.log("ERRO", error);
       });
   };
@@ -24,6 +29,11 @@ const Login = () => {
   return (
     <div className="login-card">
       <h1>LOGIN</h1>
+      {hasError && (
+        <div className="alert alert-danger">
+          Ocorreu um erro ao tenter efetuar o login
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <input
