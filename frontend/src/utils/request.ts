@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import qs from "qs";
 
 export const BASE_URL = "http://localhost:8080";
@@ -41,6 +41,10 @@ export const requestBackendLogin = (loginData: LoginData) => {
     headers: headers,
   });
 };
+
+export const requestBackend = (config: AxiosRequestConfig) =>{
+  return axios({...config, baseURL: BASE_URL});
+}
 
 export const saveAuthData = (obj: LoginResponse) => {
   localStorage.setItem("AuthData", JSON.stringify(obj));

@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import TatooCard from "../../components/TattooCard";
-import { AxiosParams } from "../../utils/axios";
-import { SpringPage } from "../../utils/spring";
 import { Tattoo } from "../../types/Tattoo";
-import { BASE_URL } from "../../utils/request";
-import axios from "axios";
+import { BASE_URL, requestBackend } from "../../utils/request";
+import { AxiosRequestConfig } from "axios";
 import { Link } from "react-router-dom";
+import { SpringPage } from "../../types/vendor/spring";
 
 const Portfolios = () => {
   const [page, setPage] = useState<SpringPage<Tattoo>>();
 
   useEffect(() => {
-    const params: AxiosParams = {
+    const params: AxiosRequestConfig = {
       method: "GET",
       url: `${BASE_URL}/tattoo`,
       params: {
@@ -20,7 +19,7 @@ const Portfolios = () => {
       },
     };
 
-    axios(params).then((response) => {
+    requestBackend(params).then((response) => {
       setPage(response.data);
       console.log(page);
     });
