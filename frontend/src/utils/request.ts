@@ -42,16 +42,16 @@ export const requestBackendLogin = (loginData: LoginData) => {
   });
 };
 
-export const requestBackend = (config: AxiosRequestConfig) =>{
+export const requestBackend = (config: AxiosRequestConfig) => {
+  const headers = config.withCredentials
+    ? {
+        ...config.headers,
+        Authorization: "Bearer " + getAuthData().access_token,
+      }
+    : config.headers;
 
-  const headers = config.withCredentials ? {
-    ...config.headers,
-    Authorization: 'Bearer ' + getAuthData().access_token
-  } : config.headers
-
-
-  return axios({...config, baseURL: BASE_URL, headers: headers});
-}
+  return axios({ ...config, baseURL: BASE_URL, headers: headers });
+};
 
 export const saveAuthData = (obj: LoginResponse) => {
   localStorage.setItem("AuthData", JSON.stringify(obj));
@@ -62,4 +62,39 @@ export const getAuthData = () => {
   const obj = JSON.parse(str);
 
   return obj as LoginResponse;
-}
+};
+
+export const isAuthenticated = (): boolean => {
+  const authData = getAuthData();
+  // Verifica se há dados de autenticação e se o token de acesso está presente e não está vazio
+  return !!authData && !!authData.access_token;
+};
+
+// Add a request interceptor
+axios.interceptors.request.use(
+  function (config) {
+    console.log("INTECPTOR ANTES DA REQUISIÇÃO");
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    console.log("INTECPTOR ANTES DA REQUISIÇÃO");
+    return Promise.reject(error);
+  }
+);
+
+// Add a response interceptor
+axios.interceptors.response.use(
+  function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    console.log("INTECPTOR RESPOSTA COM SUCESSO");
+    return response;
+  },
+  function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    console.log("INTECPTOR RESPOSTA COM ERROR");
+    return Promise.reject(error);
+  }
+);
