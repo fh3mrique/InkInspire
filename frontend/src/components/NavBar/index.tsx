@@ -14,7 +14,7 @@ const NavBar = () => {
           </div>
         </NavLink>
 
-        <button
+        {/* <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -24,9 +24,9 @@ const NavBar = () => {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> */}
 
-        <div className="collapse navbar-collapse" id="inkinspire-navbar">
+        <div /* className="collapse navbar-collapse" */ id="inkinspire-navbar">
           <ul>
             <li>
               <NavLink to="/">

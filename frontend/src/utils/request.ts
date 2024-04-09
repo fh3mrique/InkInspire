@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import qs from "qs";
+import { jwtDecode } from 'jwt-decode';
+
 
 export const BASE_URL = "http://localhost:8080";
 
@@ -20,6 +22,14 @@ const basicHeader = () =>
 type LoginData = {
   username: string;
   password: string;
+};
+
+type Role = "ROLE_OPERATOR" | "ROLE_ADMIN";
+
+type TokenData = {
+  exp: number;
+  user_name: string;
+  authorities: Role[];
 };
 
 export const requestBackendLogin = (loginData: LoginData) => {
@@ -98,3 +108,14 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+/* Função que pega o jwt do local storage e decodifica usando a lib jwt decoder */
+export const getTokenData = (): TokenData | undefined => {
+  const loginResponse = getAuthData();
+
+  try {
+    return jwtDecode(loginResponse.access_token) as TokenData;
+  } catch (error) {
+    return undefined;
+  }
+};

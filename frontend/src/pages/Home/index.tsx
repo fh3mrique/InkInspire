@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
+import { getTokenData } from "../../utils/request";
 
 const Home = () => {
   return (
     <div className="home-container">
+      <h1>{getTokenData()?.user_name}</h1>
       <div className="home-content">
         <div className="home-text-content">
           <h1>
