@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import qs from "qs";
-import { jwtDecode } from 'jwt-decode';
-
+import { jwtDecode } from "jwt-decode";
 
 export const BASE_URL = "http://localhost:8080";
 
@@ -74,11 +73,11 @@ export const getAuthData = () => {
   return obj as LoginResponse;
 };
 
-export const isAuthenticated = (): boolean => {
+/* export const isAuthenticated = (): boolean => {
   const authData = getAuthData();
   // Verifica se há dados de autenticação e se o token de acesso está presente e não está vazio
   return !!authData && !!authData.access_token;
-};
+}; */
 
 // Add a request interceptor
 axios.interceptors.request.use(
@@ -118,4 +117,10 @@ export const getTokenData = (): TokenData | undefined => {
   } catch (error) {
     return undefined;
   }
+};
+
+export const isAuthenticated = (): boolean => {
+  const tokenData = getTokenData();
+
+  return tokenData && tokenData.exp * 1000 > Date.now() ? true : false;
 };
