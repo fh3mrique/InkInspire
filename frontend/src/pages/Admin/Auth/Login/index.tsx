@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 import { useForm } from "react-hook-form";
-import { getAuthData, requestBackendLogin, saveAuthData } from "../../../../utils/request";
-import { useState } from "react";
+import { getAuthData, getTokenData, requestBackendLogin, saveAuthData } from "../../../../utils/request";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../../AuthContext";
 
 type FormData = {
   username: string;
@@ -16,14 +17,18 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const {setAuthContextData} = useContext(AuthContext);
+
+
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
-        const token = getAuthData().access_token;
-        console.log('TOKEN GERADO: ' + token);
         setHasError(false);
-        console.log("SUCESSO", response);
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData(),
+        })
         navigate("/admin")
       })
       .catch((error) => {

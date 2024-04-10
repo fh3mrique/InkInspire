@@ -13,7 +13,10 @@
 
 .nav-bar-container header{
     display: flex; 
+    /* background-color: aqua; */
     justify-content: space-between;
+    /* justify-content: space-around; */
+
 }
 
 .title-logo-home {
@@ -25,11 +28,12 @@
 }
 
 .nav-bar-container ul {
-    justify-content: space-around;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     font-size: 0.8em;
-
+    margin-left: 180px;
+ 
 }
 
 .nav-bar-container ul li{
@@ -38,6 +42,7 @@
     color: white;
     font-family: "Space Mono", monospace;
     cursor: pointer;
+    margin-right: 120px;
 }
 
 .title-logo-home {
