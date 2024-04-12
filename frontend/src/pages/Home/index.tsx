@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
-import { getTokenData, isAuthenticated } from "../../utils/request";
+import { hasAnyRole } from "../../utils/request";
+
 
 const Home = () => {
   return (
     <div className="home-container">
-      <h1>{isAuthenticated() ? 'autenticado' : 'nao autenticado'}</h1>
+      <h1>{hasAnyRole(['ROLE_ADMIN']) ? "sim" : "nao"}</h1>
+
       <div className="home-content">
         <div className="home-text-content">
           <h1>

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 import { useForm } from "react-hook-form";
-import { getAuthData, getTokenData, requestBackendLogin, saveAuthData } from "../../../../utils/request";
+import {getTokenData, requestBackendLogin, saveAuthData } from "../../../../utils/request";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../../AuthContext";
 
