@@ -83,7 +83,7 @@ export const removeAuthData = () => {
   return !!authData && !!authData.access_token;
 }; */
 
-// Add a request interceptor
+/* // Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
     console.log("INTECPTOR ANTES DA REQUISIÇÃO");
@@ -110,7 +110,7 @@ axios.interceptors.response.use(
     console.log("INTECPTOR RESPOSTA COM ERROR");
     return Promise.reject(error);
   }
-);
+); */
 
 /* Função que pega o jwt do local storage e decodifica usando a lib jwt decoder */
 export const getTokenData = (): TokenData | undefined => {

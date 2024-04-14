@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
-import { hasAnyRole } from "../../utils/request";
-
 
 const Home = () => {
   return (
     <div className="home-container">
-      <h1>{hasAnyRole(['ROLE_ADMIN']) ? "sim" : "nao"}</h1>
-
       <div className="home-content">
         <div className="home-text-content">
           <h1>

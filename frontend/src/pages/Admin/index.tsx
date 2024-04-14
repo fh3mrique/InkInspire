@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import NavBar from "./Navbar";
 import "./styles.css";
 import Users from "./User";
+import Tattoos from "./Tattoos";
 
 // @ts-ignore
 const PrivateRoute = ({ children, redirectTo }) => {
@@ -21,7 +22,7 @@ const Admin = () => {
             path="tattoo/*"
             element={
               <PrivateRoute redirectTo="/admin/auth/login">
-                <h1>CRUD DE TATOO</h1>
+                <Tattoos/>
               </PrivateRoute>
             }
           />
