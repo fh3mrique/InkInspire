@@ -17,7 +17,7 @@ const TattooDetails = () => {
   const { tattooId } = useParams<UrlParams>();
 
   useEffect(() =>{
-   axios.get(BASE_URL + `/${tattooId}`)
+   axios.get(BASE_URL + '/tattoo' + `/${tattooId}`)
    .then(response => {
     setTattoo(response.data)
    });

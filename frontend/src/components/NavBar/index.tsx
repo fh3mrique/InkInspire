@@ -1,18 +1,17 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 import "bootstrap/js/src/collapse.js";
+import { NavLink } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../AuthContext";
 import {
   getTokenData,
   isAuthenticated,
   removeAuthData,
 } from "../../utils/request";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../../AuthContext";
-
 
 const NavBar = () => {
-
-  const {authContextData, setAuthContextData} = useContext(AuthContext);
+  const { authContextData, setAuthContextData } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -39,38 +38,36 @@ const NavBar = () => {
   };
 
   return (
-    <div className="nav-bar-container">
-      <header>
-        <NavLink to="/">
-          <div>
-            <h1 className="title-logo-home">
-              <span>Ink</span>Inspire
-            </h1>
-          </div>
-        </NavLink>
+    <nav className="main-nav  navbar navbar-expand-md">
+      <div className="container-fluid">
+        <Link to="/" className="nav-logo-text">
+          <h4><span>Ink</span>Inspire</h4>
+        </Link>
 
-        {/* <button
+        <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#inkinspire-navbar"
-          aria-controls="inkinspire-navbar"
+          data-bs-target="#dscatalog-navbar"
+          aria-controls="dscatalog-navbar"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button> */}
+        </button>
 
-        <div /* className="collapse navbar-collapse" */ id="inkinspire-navbar">
-          <ul>
+        <div className="collapse navbar-collapse" id="dscatalog-navbar">
+          <ul className="navbar-nav offset-md-2 main-menu">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/">
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/portfolios">Portifolios</NavLink>
+              <NavLink to="portfolios">Portifólios</NavLink>
             </li>
             <li>
-              <NavLink to="/admin">Admin</NavLink>
+              <NavLink to="admin">ADMIN</NavLink>
             </li>
           </ul>
         </div>
@@ -78,17 +75,19 @@ const NavBar = () => {
         <div className="nav-login-logout">
           {authContextData.authenticated ? (
             <>
-              <span>{authContextData.tokenData?.user_name}</span>
+              <span className="nav-username">
+                {authContextData.tokenData?.user_name}
+              </span>
               <a href="#logout" onClick={handleLogoutClick}>
                 LOGOUT
               </a>
             </>
           ) : (
-            <a href="#login">LOGIN</a>
+            <Link to="/admin/auth">LOGIN</Link>
           )}
         </div>
-      </header>
-    </div>
+      </div>
+    </nav>
   );
 };
 

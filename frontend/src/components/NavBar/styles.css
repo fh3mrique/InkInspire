@@ -1,4 +1,4 @@
-.nav-bar-container{
+/*.nav-bar-container{
     background-color: black;
     padding: 20px  80px;
     font-weight: bold;
@@ -13,9 +13,8 @@
 
 .nav-bar-container header{
     display: flex; 
-    /* background-color: aqua; */
+    
     justify-content: space-between;
-    /* justify-content: space-around; */
 
 }
 
@@ -47,4 +46,68 @@
 
 .title-logo-home {
     color: aliceblue;
-}
+}*/
+
+
+.main-nav {
+    padding-left: 40px;
+    min-height: 80px;
+    font-family: "Space Mono", monospace;
+    background-color: black;
+  }
+  
+  .nav-logo-text,
+  .nav-logo-text:hover {
+    color: #fff;
+  }
+
+  .nav-logo-text span{
+    color: rgb(180, 44, 44);
+  }
+  
+  .main-menu {
+    display: flex;
+    font-size: 18px;
+    width: 380px;
+    justify-content: space-between;
+  }
+  
+  .main-menu a {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .main-menu a:hover {
+    color: #fff;
+  }
+  
+  .main-menu a.active {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .nav-login-logout {
+    display: none;
+  }
+  
+  .nav-username {
+    display: none;
+    margin-right: 20px;
+  }
+  
+  @media (min-width: 758px) {
+    .nav-login-logout {
+      display: unset;
+      color: white;
+      margin-right: 15px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .nav-login-logout {
+      margin-right: 40px;
+    }
+    .nav-username {
+      display: unset;
+    }
+  }
+  

@@ -1,0 +1,21 @@
+.masonry-grid {
+    display: flex;
+    margin-left: -30px; 
+    width: auto;
+  }
+  
+  .masonry-grid-column {
+    background-clip: padding-box;
+    padding-left: 30px; /* gutter size */
+  }
+  
+  .masonry-grid-column img {
+    width: 100%;
+    display: block;
+    margin-bottom: 30px; /* gutter size */
+  }
+
+
+  .img-tatoo{
+    max-width: 300px;
+  }
