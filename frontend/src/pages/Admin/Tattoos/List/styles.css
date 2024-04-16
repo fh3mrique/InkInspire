@@ -1,0 +1,46 @@
+.btn-crud-add{
+    width: 100%;
+    background-color: #FFA500;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Space Mono", monospace;
+    border: none;
+    color: white;
+    cursor: pointer;
+    height: 50px;
+    border-radius: 10px;
+    letter-spacing: 0.025em;
+    margin-bottom: 20px;
+}
+.btn-crud-add:hover{
+    background-color: #FFA500;
+    color: white;
+}
+
+.tatoo-filter-container{
+    margin-bottom: 20px;
+    padding: 15px;
+    color: black;
+}
+
+.base-card {
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  @media (min-width: 768px){
+    .tatto-crud-bar-container{
+        display: flex;
+        margin-bottom: 40px;
+    }
+    .btn-crud-add{
+        height: 60px;
+        margin-bottom: 0;
+    }
+    .tatoo-filter-container{
+        margin-left: 20px;
+        flex: 1;
+    }
+  }
+  
