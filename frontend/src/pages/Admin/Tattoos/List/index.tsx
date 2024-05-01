@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import TattoCrudCard from "../TattooCrudCard";
+import TattoCrudCard from "./TattooCrudCard";
 import "./styles.css";
 
 const List = () => {
@@ -35,15 +35,15 @@ const List = () => {
 
       <div className="row">
         <div className="col-sm-6 col-md-12">
-          <TattoCrudCard />
+          <TattoCrudCard tattoo={tatto} />
         </div>
 
         <div className="col-sm-6 col-md-12">
-          <TattoCrudCard />
+          <TattoCrudCard tattoo={tatto} />
         </div>
 
         <div className="col-sm-6 col-md-12">
-          <TattoCrudCard />
+          <TattoCrudCard tattoo={tatto} />
         </div>
       </div>
     </div>
