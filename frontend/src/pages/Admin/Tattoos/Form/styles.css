@@ -1,0 +1,11 @@
+.tattoo-crud-form-card{
+    padding: 20px;
+    border: solid 1px gray;
+    border-radius: 10px;
+}
+
+.tattoo-crud-form-title{
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: -0.015px;
+}

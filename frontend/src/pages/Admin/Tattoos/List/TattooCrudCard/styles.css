@@ -6,6 +6,7 @@
     margin-bottom: 30px;
     /* box-shadow: -5px -5px 30px 5px red, 5px 5px 30px 5px blue; */
     font-family: "Space Mono", monospace;
+    border-radius: 10px;
 }
 
 .card-crud-container img{
