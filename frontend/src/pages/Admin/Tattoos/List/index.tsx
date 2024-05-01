@@ -1,29 +1,30 @@
 import { Link } from "react-router-dom";
 import TattoCrudCard from "./TattooCrudCard";
 import "./styles.css";
+import { useEffect, useState } from "react";
+import { SpringPage } from "../../../../types/vendor/spring";
+import { Tattoo } from "../../../../types/Tattoo";
+import { BASE_URL, requestBackend } from "../../../../utils/request";
+import { AxiosRequestConfig } from "axios";
 
 const List = () => {
-  const tatto = {
-    id: 1,
-    name: "Tatuagem Shikamaru",
-    description: "Tradicional americana arte",
-    style: {
-      id: 1,
-      name: "Tradicional Americana",
-    },
-    price: 300.0,
-    artUrl:
-      "https://i.pinimg.com/564x/48/88/63/4888637b3a66673bd1c62cdae99c0674.jpg",
-    artist: {
-      id: 2,
-      name: "ARTISTA 2",
-      photo:
-        "https://s2.glbimg.com/SmsWi_YyltW2P41o_rqhxCpmOybp8-DwBidCisRnwI2QoQwS7DYrQjPIFKkFlySW/e.glbimg.com/og/ed/f/original/2013/09/09/ami_james_a.jpg",
-      perfil: "Esse é meu perfil",
-      contact: "81 932324345",
-      email: "artista2@gmail.com",
-    },
-  };
+  const [page, setPage] = useState<SpringPage<Tattoo>>();
+
+  useEffect(() => {
+    const config: AxiosRequestConfig = {
+      method: "GET",
+      url: `${BASE_URL}/tattoo`,
+      params: {
+        page: 0,
+        size: 50,
+      },
+    };
+
+    requestBackend(config).then((response) => {
+      setPage(response.data);
+    });
+  }, []);
+
   return (
     <div>
       <div className="tatto-crud-bar-container">
@@ -34,17 +35,11 @@ const List = () => {
       </div>
 
       <div className="row">
-        <div className="col-sm-6 col-md-12">
-          <TattoCrudCard tattoo={tatto} />
-        </div>
-
-        <div className="col-sm-6 col-md-12">
-          <TattoCrudCard tattoo={tatto} />
-        </div>
-
-        <div className="col-sm-6 col-md-12">
-          <TattoCrudCard tattoo={tatto} />
-        </div>
+        {page?.content.map((tattoo) => (
+          <div key={tattoo.id} className="col-sm-6 col-md-12">
+            <TattoCrudCard tattoo={tattoo} />
+          </div>
+        ))}
       </div>
     </div>
   );
