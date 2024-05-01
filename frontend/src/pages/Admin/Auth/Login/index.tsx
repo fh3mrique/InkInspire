@@ -5,13 +5,13 @@ import {getTokenData, requestBackendLogin, saveAuthData } from "../../../../util
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../../AuthContext";
 
-type FormData = {
+type CredentialDTO = {
   username: string;
   password: string;
 };
 
 const Login = () => {
-  const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
+  const { register, handleSubmit, formState: {errors} } = useForm<CredentialDTO>();
 
   const [hasError, setHasError] = useState(false);
 
@@ -20,7 +20,7 @@ const Login = () => {
   const {setAuthContextData} = useContext(AuthContext);
 
 
-  const onSubmit = (formData: FormData) => {
+  const onSubmit = (formData: CredentialDTO) => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
