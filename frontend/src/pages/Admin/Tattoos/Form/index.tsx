@@ -21,17 +21,23 @@ const Form = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <textarea
-                className="form-control base-input"
-                name=""
-                rows={10}
-              ></textarea>
+              <div>
+                <textarea
+                  className="form-control base-input h-auto"
+                  name=""
+                  rows={10}
+                />
+              </div>
             </div>
           </div>
 
           <div className="tattoo-crud-buttons-container">
-            <button className="btn btn-outline-danger">CANCELAR</button>
-            <button className="btn btn-primary">SALVAR</button>
+            <button className="btn btn-outline-danger tattoo-crud-button">
+              CANCELAR
+            </button>
+            <button className="btn btn-primary tattoo-crud-button text-white">
+              SALVAR
+            </button>
           </div>
         </form>
       </div>

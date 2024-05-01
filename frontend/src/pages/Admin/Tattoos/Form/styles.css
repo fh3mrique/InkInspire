@@ -28,6 +28,23 @@
     justify-content: space-between;
 }
 
+.tattoo-crud-button{
+    height: 50px;
+    border-radius: 10px;
+    width: 110px;
+    font-weight: bold;
+}
+
+@media(min-width: 576px){
+    .tattoo-crud-buttons-container{
+        justify-content: flex-end;
+    }
+
+    .tattoo-crud-button{
+       margin-left: 30px;
+       width: 270px;
+    }
+}
 @media(min-width: 992px){
     .tattoo-crud-inputs-container{
         margin-bottom: 0;
