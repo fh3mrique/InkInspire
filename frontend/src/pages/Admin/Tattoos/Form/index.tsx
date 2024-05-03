@@ -3,46 +3,71 @@ import "./styles.css";
 import { Tattoo } from "../../../../types/Tattoo";
 import { BASE_URL, requestBackend } from "../../../../utils/request";
 import { AxiosRequestConfig } from "axios";
-import { Artist } from "../../../../types/artist";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
+type UrlParams = {
+  tattooId: string;
+};
 const Form = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<Tattoo>();
 
+  useEffect(() => {
+    if (isEditing) {
+      requestBackend({ url: `/tattoo/${tattooId}` }).then((response) => {
+        const tattoo = response.data as Tattoo;
+
+        setValue("name", tattoo.name);
+        setValue("price", tattoo.price);
+        setValue("artUrl", tattoo.artUrl);
+        setValue("artist", tattoo.artist);
+        setValue("style", tattoo.style);
+        setValue("description", tattoo.description);
+      });
+    }
+  }, [setValue]);
+
   const navigate = useNavigate();
+
+  const { tattooId } = useParams<UrlParams>();
+
+  const isEditing = tattooId !== "create";
 
   const onSubmit = (formData: Tattoo) => {
     const dataf = {
       ...formData,
-      style: {
-        id: 1,
-      },
+      style: isEditing
+        ? formData.style
+        : {
+            id: 1,
+          },
 
-      artist:  {
+      artist: {
         id: 2,
         name: "ARTISTA 2",
-    }
+      },
     };
 
     const config: AxiosRequestConfig = {
-      method: "POST",
-      url: `/tattoo`,
+      method: isEditing ? "PUT" : "POST",
+      url: isEditing ? `/tattoo/${tattooId}` : `/tattoo`,
       data: dataf,
       withCredentials: true,
     };
 
     requestBackend(config).then((response) => {
       console.log(response.data);
-      navigate('/admin/tattoo')
+      navigate("/admin/tattoo");
     });
   };
 
   const handleCancel = () => {
-    navigate('/admin/tattoo')
+    navigate("/admin/tattoo");
   };
 
   return (

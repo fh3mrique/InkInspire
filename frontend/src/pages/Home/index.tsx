@@ -6,10 +6,10 @@ const Home = () => {
     <div className="home-container">
       <div className="home-content">
         <div className="home-text-content">
-          <h1>
+          <h1 className="title-home-text">
             Explorando o Universo da Arte na Pele: Encontre Sua Inspiração Aqui!
           </h1>
-          <p>
+          <p className="subtitle-home-text">
             Descubra Talentosos Tatuadores, Explore Estilos Únicos e Faça Sua
             Próxima Tatuagem se Tornar uma Obra de Arte.
           </p>

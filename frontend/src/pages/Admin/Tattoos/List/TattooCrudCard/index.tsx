@@ -20,6 +20,7 @@ const TattoCrudCard = ({ tattoo }: Props) => {
                 ? tattoo.artist.name
                 : "Nome do artista indisponível"} */}
             </p>
+            <p>{tattoo.name}</p>
             <p>
               <span>Preço: </span>R$ {formatPrice(tattoo.price)}
             </p>
