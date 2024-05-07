@@ -18,7 +18,7 @@ Através do InkInspire, os usuários podem buscar estilos e modelos de tatuagens
 ![Web 1](https://github.com/fh3mrique/assets/blob/main/Capturar3.PNG)
 
 ## Autenticação e restrição de conteúdo baseado em prefil
-![Web 2](https://github.com/fh3mrique/assets/blob/main/Capturar4.PNG)![Web 3](https://github.com/fh3mrique/assets/blob/main/Capturar5.PNG)![Web 4](https://github.com/fh3mrique/assets/blob/main/Capturar6.PNG) 
+![Web 2](https://github.com/fh3mrique/assets/blob/main/loginpage.PNG)![Web 3](https://github.com/fh3mrique/assets/blob/main/Capturar5.PNG)![Web 4](https://github.com/fh3mrique/assets/blob/main/Capturar6.PNG) 
 
 
 
