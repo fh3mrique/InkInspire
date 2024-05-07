@@ -1,3 +1,31 @@
-.login-card{
-    padding: 30px;
+.login-card {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 20 0 20 0;
+  font-family: "Space Mono", monospace;
+}
+
+.title-login-card {
+  margin-bottom: 30px;
+}
+.login-submit button {
+  border: none;
+  width: 190px;
+  height: 40px;
+  background-color: lightblue;
+  border-radius: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+
+  background-color: rgba(56, 53, 53, 0.8); /* Fundo escuro mais claro */
+  color: #fff; /* Texto branco */
+}
+
+.login-link-recover {
+  margin-bottom: 30px;
 }

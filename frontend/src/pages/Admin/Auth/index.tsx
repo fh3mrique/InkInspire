@@ -7,14 +7,14 @@ const Auth = () => {
   return (
     <div className="auth-container row">
       <div className="auth-banner-container col-xl-4">
-        <img src={AuthImg} />
+      <img src={AuthImg} style={{ width: '100%' }} />
       </div>
       <div className="auth-form-container col-xl-4">
         <Routes>
           <Route path="/" element={<Navigate to="login" replace />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="login" element={<Login />} />
           <Route path="signup" element={<h1>Card signup</h1>} />
-          <Route path="recovery" element={<h1>Card recovery</h1>} />
+          <Route path="recovery" element={<h1 className="bg-black">Card recovery</h1>} />
         </Routes>
       </div>
     </div>

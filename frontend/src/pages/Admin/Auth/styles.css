@@ -7,20 +7,31 @@
 }
 
 .auth-banner-container{
-    width: 100%;
     /* background-color: blue; */
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
+    background-color: salmon;
+    border-radius: 20px 0px 0px 20px;
+    
 }
 
 .auth-banner-container img{
+    border-radius: 8px 0px 0px 8px;
+
     height: 600px;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: auto;
+    flex: 1;
 }
 
 .auth-form-container{
     height: 600px;  
     background-color: rgba(56, 53, 53, 0.589);
+    border-radius: 0px 10px 10px 0px;
 }
+
+@media(width <= 768px){
+    .auth-banner-container {
+        display: none;
+    }
+}
+

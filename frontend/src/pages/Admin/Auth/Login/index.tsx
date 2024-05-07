@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <div className="login-card">
-      <h1>LOGIN</h1>
+      <h1 className="title-login-card">LOGIN</h1>
       {hasError && (
         <div className="alert alert-danger">
           Ocorreu um erro ao tenter efetuar o login

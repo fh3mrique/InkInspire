@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
-import "bootstrap/js/src/collapse.js";
+import "bootstrap/js/src/collapse.js"; // Verifique se isso é necessário
 import { NavLink } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react"; // Adicionei useState para controlar o estado do menu
 import { AuthContext } from "../../AuthContext";
 import {
   getTokenData,
@@ -12,6 +12,7 @@ import {
 
 const NavBar = () => {
   const { authContextData, setAuthContextData } = useContext(AuthContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para controlar se o menu está aberto
 
   const navigate = useNavigate();
 
@@ -37,8 +38,12 @@ const NavBar = () => {
     navigate("/");
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen); // Alternar entre aberto e fechado
+  };
+
   return (
-    <nav className="main-nav  navbar navbar-expand-md">
+    <nav className="main-nav navbar navbar-expand-md">
       <div className="container-fluid">
         <Link to="/" className="nav-logo-text">
           <h4><span>Ink</span>Inspire</h4>
@@ -47,27 +52,23 @@ const NavBar = () => {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#dscatalog-navbar"
-          aria-controls="dscatalog-navbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          onClick={toggleMenu} // Chame a função toggleMenu ao clicar no botão do menu
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="dscatalog-navbar">
+        <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="dscatalog-navbar">
           <ul className="navbar-nav offset-md-2 main-menu">
             <li>
-              <NavLink to="/">
+              <NavLink to="/" onClick={toggleMenu}>
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="portfolios">Portifólios</NavLink>
+              <NavLink to="portfolios" onClick={toggleMenu}>Portifólios</NavLink>
             </li>
             <li>
-              <NavLink to="admin">ADMIN</NavLink>
+              <NavLink to="admin" onClick={toggleMenu}>ADMIN</NavLink>
             </li>
           </ul>
         </div>
@@ -83,7 +84,7 @@ const NavBar = () => {
               </a>
             </>
           ) : (
-            <Link to="/admin/auth">LOGIN</Link>
+            <Link to="/admin/auth" onClick={toggleMenu}>LOGIN</Link>
           )}
         </div>
       </div>

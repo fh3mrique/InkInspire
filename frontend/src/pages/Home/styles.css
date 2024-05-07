@@ -24,15 +24,14 @@
 .home-text-content {
   color: white;
   width: 65%;
+  
 }
 .title-home-text {
-  font-size: 1.2em;
   text-align: center;
 }
 
 .subtitle-home-text {
   margin-top: 30px;
-  font-size: 0.7em;
 }
 
 .btn-home-container {
@@ -49,6 +48,11 @@
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.btn-home-container button:hover{
+  background-color: rgba(255, 165, 0, 0.8);;
+  color: #fff; /* Texto branco */
 }
 
 @media (min-width: 320px) {
