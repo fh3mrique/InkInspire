@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 110px);
     flex-direction: row;
 }
 
@@ -29,9 +29,12 @@
     border-radius: 0px 10px 10px 0px;
 }
 
-@media(width <= 768px){
+@media(width <= 1200px){
     .auth-banner-container {
         display: none;
     }
 }
+
+  
+
 
