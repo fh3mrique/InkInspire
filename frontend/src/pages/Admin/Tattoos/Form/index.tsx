@@ -41,6 +41,7 @@ const Form = () => {
   const onSubmit = (formData: Tattoo) => {
     const dataf = {
       ...formData,
+      artUrl: isEditing ? formData.artUrl : "https://i.pinimg.com/564x/b2/1f/91/b21f911c32aa6f11da75d70038f4f0ac.jpg",
       style: isEditing
         ? formData.style
         : {
