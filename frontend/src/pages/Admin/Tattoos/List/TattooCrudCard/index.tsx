@@ -7,12 +7,11 @@ import { requestBackend } from "../../../../../utils/request";
 
 type Props = {
   tattoo: Tattoo;
+  onDelete: Function;
 };
 
-const TattoCrudCard = ({ tattoo }: Props) => {
-
+const TattoCrudCard = ({ tattoo, onDelete }: Props) => {
   const handleDelete = (tattooId: number) => {
-    
     if (!window.confirm("Tem certeza que deseja deletar?")) {
       return;
     }
@@ -24,7 +23,7 @@ const TattoCrudCard = ({ tattoo }: Props) => {
     };
 
     requestBackend(config).then(() => {
-      console.log("Deletado id " + tattooId);
+      onDelete();
     });
   };
 

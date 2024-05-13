@@ -11,6 +11,10 @@ const List = () => {
   const [page, setPage] = useState<SpringPage<Tattoo>>();
 
   useEffect(() => {
+    getTattoos();
+  }, []);
+
+  const getTattoos = () => {
     const config: AxiosRequestConfig = {
       method: "GET",
       url: `${BASE_URL}/tattoo`,
@@ -23,7 +27,7 @@ const List = () => {
     requestBackend(config).then((response) => {
       setPage(response.data);
     });
-  }, []);
+  };
 
   return (
     <div>
@@ -37,7 +41,7 @@ const List = () => {
       <div className="row">
         {page?.content.map((tattoo) => (
           <div key={tattoo.id} className="col-sm-6 col-md-12">
-            <TattoCrudCard tattoo={tattoo} />
+            <TattoCrudCard tattoo={tattoo} onDelete={() => getTattoos()} />
           </div>
         ))}
       </div>
