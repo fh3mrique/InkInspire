@@ -3,7 +3,10 @@ package com.inkIspire.services;
 import com.inkIspire.domain.dtos.TattooDTO;
 import com.inkIspire.domain.entities.Tattoo;
 import com.inkIspire.domain.repositories.TattoRepository;
+import com.inkIspire.exceptions.DatabaseException;
 import com.inkIspire.exceptions.EntityNotFoundExceptions;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -57,17 +60,28 @@ public class TattooService {
             tattoo = repository.save(tattoo);
 
             return new TattooDTO(tattoo);
-        }
-        catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             throw new EntityNotFoundExceptions("Id não encontrado");
         }
     }
 
-    private void copyDtoForEntity (TattooDTO dto, Tattoo entity){
+    public void delete(Long id) {
+
+        try {
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new EntityNotFoundExceptions("Id não encontrado");
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Violação na integridade do banco");
+        }
+    }
+
+    private void copyDtoForEntity(TattooDTO dto, Tattoo entity) {
         entity.setName(dto.name());
         entity.setDescription(dto.description());
         entity.setPrice(dto.price());
         entity.setStyle(dto.style());
         entity.setArtUrl(dto.artUrl());
     }
+
 }
