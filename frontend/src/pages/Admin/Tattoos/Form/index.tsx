@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import "./styles.css";
 import { Tattoo } from "../../../../types/Tattoo";
 import { BASE_URL, requestBackend } from "../../../../utils/request";
@@ -17,30 +17,28 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    control,
   } = useForm<Tattoo>();
-
-  
 
   interface OptionType {
     value: string;
     label: string;
   }
 
-  const [selectStyles, setSelectStyles] = useState<Style[]>([])
-  
+  const [selectStyles, setSelectStyles] = useState<Style[]>([]);
+
   const customStyles: StylesConfig<Style, false, GroupBase<Style>> = {
     option: (provided, state) => ({
       ...provided,
-      color: state.isSelected ? 'black' : 'black', // Altere as cores conforme necessário
+      color: state.isSelected ? "black" : "black", // Altere as cores conforme necessário
     }),
   };
 
-
-  useEffect(()=>{
-    requestBackend({url: '/styles'}).then((response)=>{
+  useEffect(() => {
+    requestBackend({ url: "/styles" }).then((response) => {
       setSelectStyles(response.data);
-    })
-  }, [])
+    });
+  }, []);
 
   useEffect(() => {
     if (isEditing) {
@@ -124,13 +122,27 @@ const Form = () => {
               </div>
 
               <div className="margin-bottom-30">
-                <Select
-                  options={selectStyles}
-                  classNamePrefix="tattoo-crud-select"
-                  getOptionLabel={(style: Style) => style.name}
-                  getOptionValue={(style: Style) => String(style.id)}
-                  styles={customStyles}
+                <Controller
+                  name="style"
+                  rules={{ required: true }}
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      options={selectStyles}
+                      classNamePrefix="tattoo-crud-select"
+                      getOptionLabel={(style: Style) => style.name}
+                      getOptionValue={(style: Style) => String(style.id)}
+                      styles={customStyles}
+                    />
+                  )}
                 />
+
+                {errors.style && (
+                  <div className="invalid-feedback d-block">
+                    Campo obrigatório
+                  </div>
+                )}
               </div>
 
               <div className="margin-bottom-30">
