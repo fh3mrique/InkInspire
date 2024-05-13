@@ -4,8 +4,9 @@ import { Tattoo } from "../../../../types/Tattoo";
 import { BASE_URL, requestBackend } from "../../../../utils/request";
 import { AxiosRequestConfig } from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
-import Select, { StylesConfig } from "react-select";
+import { useEffect, useState } from "react";
+import Select, { GroupBase, StylesConfig } from "react-select";
+import { Style } from "../../../../types/style";
 
 type UrlParams = {
   tattooId: string;
@@ -18,23 +19,28 @@ const Form = () => {
     setValue,
   } = useForm<Tattoo>();
 
-  const options: OptionType[] = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
+  
 
   interface OptionType {
     value: string;
     label: string;
   }
+
+  const [selectStyles, setSelectStyles] = useState<Style[]>([])
   
-  const customStyles: StylesConfig<OptionType, false> = {
+  const customStyles: StylesConfig<Style, false, GroupBase<Style>> = {
     option: (provided, state) => ({
       ...provided,
       color: state.isSelected ? 'black' : 'black', // Altere as cores conforme necessário
     }),
   };
+
+
+  useEffect(()=>{
+    requestBackend({url: '/styles'}).then((response)=>{
+      setSelectStyles(response.data);
+    })
+  }, [])
 
   useEffect(() => {
     if (isEditing) {
@@ -119,9 +125,10 @@ const Form = () => {
 
               <div className="margin-bottom-30">
                 <Select
-                  options={options}
+                  options={selectStyles}
                   classNamePrefix="tattoo-crud-select"
-                  className="custom-select"
+                  getOptionLabel={(style: Style) => style.name}
+                  getOptionValue={(style: Style) => String(style.id)}
                   styles={customStyles}
                 />
               </div>
