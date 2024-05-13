@@ -5,6 +5,7 @@ import { BASE_URL, requestBackend } from "../../../../utils/request";
 import { AxiosRequestConfig } from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import Select, { StylesConfig } from "react-select";
 
 type UrlParams = {
   tattooId: string;
@@ -16,6 +17,24 @@ const Form = () => {
     formState: { errors },
     setValue,
   } = useForm<Tattoo>();
+
+  const options: OptionType[] = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ];
+
+  interface OptionType {
+    value: string;
+    label: string;
+  }
+  
+  const customStyles: StylesConfig<OptionType, false> = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? 'black' : 'black', // Altere as cores conforme necessário
+    }),
+  };
 
   useEffect(() => {
     if (isEditing) {
@@ -41,7 +60,9 @@ const Form = () => {
   const onSubmit = (formData: Tattoo) => {
     const dataf = {
       ...formData,
-      artUrl: isEditing ? formData.artUrl : "https://i.pinimg.com/564x/b2/1f/91/b21f911c32aa6f11da75d70038f4f0ac.jpg",
+      artUrl: isEditing
+        ? formData.artUrl
+        : "https://i.pinimg.com/564x/b2/1f/91/b21f911c32aa6f11da75d70038f4f0ac.jpg",
       style: isEditing
         ? formData.style
         : {
@@ -94,6 +115,15 @@ const Form = () => {
                 <div className="invalid-feedback d-block">
                   {errors.name?.message}
                 </div>
+              </div>
+
+              <div className="margin-bottom-30">
+                <Select
+                  options={options}
+                  classNamePrefix="tattoo-crud-select"
+                  className="custom-select"
+                  styles={customStyles}
+                />
               </div>
 
               <div className="margin-bottom-30">
