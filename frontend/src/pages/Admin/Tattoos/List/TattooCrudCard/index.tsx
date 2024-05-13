@@ -2,12 +2,32 @@ import { Link } from "react-router-dom";
 import { Tattoo } from "../../../../../types/Tattoo";
 import { formatPrice } from "../../../../../utils/formaters";
 import "./styles.css";
+import { AxiosRequestConfig } from "axios";
+import { requestBackend } from "../../../../../utils/request";
 
 type Props = {
   tattoo: Tattoo;
 };
 
 const TattoCrudCard = ({ tattoo }: Props) => {
+
+  const handleDelete = (tattooId: number) => {
+    
+    if (!window.confirm("Tem certeza que deseja deletar?")) {
+      return;
+    }
+
+    const config: AxiosRequestConfig = {
+      method: "DELETE",
+      url: `/tattoo/${tattooId}`,
+      withCredentials: true,
+    };
+
+    requestBackend(config).then(() => {
+      console.log("Deletado id " + tattooId);
+    });
+  };
+
   return (
     <div className="card-crud-container">
       <div className="img-tattoo-card">
@@ -29,7 +49,12 @@ const TattoCrudCard = ({ tattoo }: Props) => {
       </div>
 
       <div className="btn-tattoo-card-container">
-        <button className="btn-delete-tattoo-card">Excluir</button>
+        <button
+          onClick={() => handleDelete(tattoo.id)}
+          className="btn-delete-tattoo-card"
+        >
+          Excluir
+        </button>
 
         <Link to={`/admin/tattoo/${tattoo.id}`}>
           <button className="btn-update-tattoo-card">Editar</button>
