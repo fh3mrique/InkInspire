@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import TattoCrudCard from "./TattooCrudCard";
 import "./styles.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SpringPage } from "../../../../types/vendor/spring";
 import { Tattoo } from "../../../../types/Tattoo";
 import { BASE_URL, requestBackend } from "../../../../utils/request";
@@ -20,10 +20,10 @@ const List = () => {
     });
 
   const handlePageChange = (pageNumber: number) => {
-    setControlComponentsData({activePage: pageNumber})
+    setControlComponentsData({ activePage: pageNumber });
   };
 
-  useEffect(() => {
+  const getTattoos = useCallback(() => {
     const config: AxiosRequestConfig = {
       method: "GET",
       url: `${BASE_URL}/tattoo`,
@@ -36,9 +36,11 @@ const List = () => {
     requestBackend(config).then((response) => {
       setPage(response.data);
     });
-  }, [controlComponentsData]);
+  }, [controlComponentsData])
 
-  
+  useEffect(() => {
+    getTattoos();
+  }, [getTattoos]);
 
   return (
     <div>
@@ -52,15 +54,12 @@ const List = () => {
       <div className="row">
         {page?.content.map((tattoo) => (
           <div key={tattoo.id} className="col-sm-6 col-md-12">
-            <TattoCrudCard
-              tattoo={tattoo}
-              onDelete={() => {}}
-            />
+            <TattoCrudCard tattoo={tattoo} onDelete={getTattoos} />
           </div>
         ))}
       </div>
 
-      <Pagination 
+      <Pagination
         pageCount={page ? page.totalPages : 0}
         range={3}
         onChange={handlePageChange}
