@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import "./styles.css";
 import { Tattoo } from "../../../../types/Tattoo";
-import { BASE_URL, requestBackend } from "../../../../utils/request";
+import { requestBackend } from "../../../../utils/request";
 import { AxiosRequestConfig } from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -20,19 +20,20 @@ const Form = () => {
     control,
   } = useForm<Tattoo>();
 
-  interface OptionType {
-    value: string;
-    label: string;
-  }
-
   const [selectStyles, setSelectStyles] = useState<Style[]>([]);
 
   const customStyles: StylesConfig<Style, false, GroupBase<Style>> = {
     option: (provided, state) => ({
       ...provided,
-      color: state.isSelected ? "black" : "black", // Altere as cores conforme necessário
+      color: state.isSelected ? "black" : "black",
     }),
   };
+
+  const navigate = useNavigate();
+
+  const { tattooId } = useParams<UrlParams>();
+
+  const isEditing = tattooId !== "create";
 
   useEffect(() => {
     requestBackend({ url: "/styles" }).then((response) => {
@@ -55,34 +56,12 @@ const Form = () => {
     }
   }, [setValue]);
 
-  const navigate = useNavigate();
-
-  const { tattooId } = useParams<UrlParams>();
-
-  const isEditing = tattooId !== "create";
-
   const onSubmit = (formData: Tattoo) => {
-    const dataf = {
-      ...formData,
-      artUrl: isEditing
-        ? formData.artUrl
-        : "https://i.pinimg.com/564x/b2/1f/91/b21f911c32aa6f11da75d70038f4f0ac.jpg",
-      style: isEditing
-        ? formData.style
-        : {
-            id: 1,
-          },
-
-      artist: {
-        id: 2,
-        name: "ARTISTA 2",
-      },
-    };
-
+    
     const config: AxiosRequestConfig = {
       method: isEditing ? "PUT" : "POST",
       url: isEditing ? `/tattoo/${tattooId}` : `/tattoo`,
-      data: dataf,
+      data: formData,
       withCredentials: true,
     };
 
@@ -143,6 +122,28 @@ const Form = () => {
                     Campo obrigatório
                   </div>
                 )}
+              </div>
+
+              <div className="margin-bottom-30">
+                <input
+                  {...register("artUrl", {
+                    required: "Campo obrigatório",
+                    pattern: {
+                      value:
+                        /^(?:https?:\/\/)?(?:www\.)?[\w\.-]+\.\w{2,}(?:\/\S*)?$/,
+                      message: "Deve ser uma url válida",
+                    },
+                  })}
+                  type="text"
+                  className={`form-control base-input ${
+                    errors.name ? "is-invalid" : ""
+                  }`}
+                  placeholder="Url da arte"
+                  name="artUrl"
+                />
+                <div className="invalid-feedback d-block">
+                  {errors.artUrl?.message}
+                </div>
               </div>
 
               <div className="margin-bottom-30">
