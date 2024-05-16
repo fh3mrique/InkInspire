@@ -29,6 +29,12 @@
     border-radius: 10px;
   }
 
+  .hi{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
   @media (min-width: 768px){
     .tatto-crud-bar-container{
         display: flex;

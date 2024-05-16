@@ -49,8 +49,25 @@
   position: relative;
 }
 
-.arrow-left {
+.arrow-right {
+  rotate: 180deg;
   width: 30px;
   height: 30px;
   color: white;
+}
+.arrow-previous {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.active{
+  color: white;
+  background-color: black;
+}
+
+.paginate-config{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
