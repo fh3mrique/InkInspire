@@ -6,6 +6,7 @@ import { SpringPage } from "../../../../types/vendor/spring";
 import { Tattoo } from "../../../../types/Tattoo";
 import { BASE_URL, requestBackend } from "../../../../utils/request";
 import { AxiosRequestConfig } from "axios";
+import Pagination from "../../../../components/Pagination";
 
 const List = () => {
   const [page, setPage] = useState<SpringPage<Tattoo>>();
@@ -45,6 +46,8 @@ const List = () => {
           </div>
         ))}
       </div>
+
+      <Pagination/>
     </div>
   );
 };

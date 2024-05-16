@@ -1,0 +1,56 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  font-family: "Space Mono", monospace;
+}
+
+.arrow-text {
+  display: block;
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+.pagination-number {
+  width: 50px;
+  height: 50px;
+  margin: 0 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #202020;
+  padding: 0 6px;
+}
+
+.previouspage {
+  background: #202020;
+  height: 50px;
+  width: 120px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.previouspage span {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.pagination-number:hover {
+  background: lighten(#202020, 3%);
+}
+
+.pagination-active {
+  background: lighten(#202020, 3%);
+  position: relative;
+}
+
+.arrow-left {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
