@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Select, { GroupBase, StylesConfig } from "react-select";
 import { Style } from "../../../../types/style";
+import CurrencyInput from "react-currency-input-field";
 
 type UrlParams = {
   tattooId: string;
@@ -57,11 +58,13 @@ const Form = () => {
   }, [setValue]);
 
   const onSubmit = (formData: Tattoo) => {
-    
+
+    const requesthandled = {...formData, price : String(formData.price).replace(',', '.')}
+
     const config: AxiosRequestConfig = {
       method: isEditing ? "PUT" : "POST",
       url: isEditing ? `/tattoo/${tattooId}` : `/tattoo`,
-      data: formData,
+      data: requesthandled,
       withCredentials: true,
     };
 
@@ -147,6 +150,31 @@ const Form = () => {
               </div>
 
               <div className="margin-bottom-30">
+              <Controller
+                  name="price"
+                  rules={{ required: true }}
+                  control={control}
+                  render={({ field }) => (
+                    <CurrencyInput
+                      placeholder="Preço"
+                      className={`form-control base-input ${
+                        errors.price ? "is-invalid" : ""
+                      }`}
+                      decimalScale={2}
+                      /* disableGroupSeparators={true} */
+                      /* prefix="$" */
+                      value={field.value}
+                      onChange={field.onChange}
+                      /* type="number" */
+
+                    />
+                  )}/>
+                <div className="invalid-feedback d-block">
+                  {errors.price?.message}
+                </div>
+              </div>
+
+              {/* <div className="margin-bottom-30">
                 <input
                   {...register("price", {
                     required: "Campo obrigatório",
@@ -161,7 +189,7 @@ const Form = () => {
                 <div className="invalid-feedback d-block">
                   {errors.price?.message}
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="col-lg-6">
