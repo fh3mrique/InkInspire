@@ -1,6 +1,7 @@
 .price-tattoo-card-listing{
     border: solid green 2px;
     width: 90px;
+    min-width: 90px;
     background-color: transparent;
     text-align: center;
     padding: 5px;
