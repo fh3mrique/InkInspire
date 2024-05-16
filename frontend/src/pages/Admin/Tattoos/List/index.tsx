@@ -12,16 +12,16 @@ const List = () => {
   const [page, setPage] = useState<SpringPage<Tattoo>>();
 
   useEffect(() => {
-    getTattoos();
+    getTattoos(0);
   }, []);
 
-  const getTattoos = () => {
+  const getTattoos = (pageNumber: number) => {
     const config: AxiosRequestConfig = {
       method: "GET",
       url: `${BASE_URL}/tattoo`,
       params: {
-        page: 0,
-        size: 50,
+        page: pageNumber,
+        size: 3,
       },
     };
 
@@ -42,12 +42,19 @@ const List = () => {
       <div className="row">
         {page?.content.map((tattoo) => (
           <div key={tattoo.id} className="col-sm-6 col-md-12">
-            <TattoCrudCard tattoo={tattoo} onDelete={() => getTattoos()} />
+            <TattoCrudCard
+              tattoo={tattoo}
+              onDelete={() => getTattoos(page.number)}
+            />
           </div>
         ))}
       </div>
 
-      <Pagination/>
+      <Pagination
+        pageCount={page ? page.totalPages : 0}
+        range={3}
+        onChange={getTattoos}
+      />
     </div>
   );
 };

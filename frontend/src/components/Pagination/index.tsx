@@ -3,11 +3,12 @@ import ArrowRight from "../../assets/img/arrow-back.svg";
 import ReactPaginate from "react-paginate";
 
 
-/* type Props ={
+type Props ={
   pageCount: number;
   range: number;
-} */
-const Pagination = ({pageCount, range}: Props) => {
+  onChange?: (pageNumber: number) => void;
+}
+const Pagination = ({pageCount, range, onChange}: Props) => {
   return (
     <div className="paginate-config">
       <>
@@ -22,6 +23,8 @@ const Pagination = ({pageCount, range}: Props) => {
           previousClassName="arrow-previous"
           previousLabel={<img className="arrow-left" src={ArrowRight} alt="" />}
           nextLabel={<img className="arrow-left" src={ArrowRight} alt="" />}
+
+          onPageChange={(items) =>(onChange) ? onChange(items.selected): {}}
         />
       </>
     </div>
