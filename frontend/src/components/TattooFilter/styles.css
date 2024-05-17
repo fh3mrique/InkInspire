@@ -1,13 +1,33 @@
-.tatoo-filter-container{
-    margin-bottom: 20px;
-    padding: 15px;
-    color: black;
+.tatoo-filter-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  color: black;
 }
 
-@media (min-width: 768px){
-    .tatoo-filter-container{
-        margin-left: 20px;
-        flex: 1;
-    }
+.tattoo-filter-name-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.tattoo-filter-name-container input{
+    border: none;
+}
+.tattoo-filter-name-container input:focus{
+    box-shadow: none;
+}
+.tattoo-filter-name-container input::placeholder{
+    color: #9e9e9e;
+}
+
+.tattoo-filter-name-container img {
+  height: 30px;
+  width: 30px;
+}
+
+@media (min-width: 768px) {
+  .tatoo-filter-container {
+    margin-left: 20px;
+    flex: 1;
   }
-  
+}
