@@ -1,7 +1,7 @@
 import "./styles.css";
 import SearchIcon from "../../assets/img/search-icon.svg";
 import { Controller, useForm } from "react-hook-form";
-import Select, { GroupBase, StylesConfig } from "react-select";
+import Select from "react-select";
 import { Style } from "../../types/style";
 import { useEffect, useState } from "react";
 import { requestBackend } from "../../utils/request";
@@ -12,12 +12,29 @@ type TattooFilterData = {
 };
 
 const TattooFilter = () => {
-  const { register, handleSubmit, control } = useForm<TattooFilterData>();
+  const { register, handleSubmit, control, setValue, getValues } =
+    useForm<TattooFilterData>();
 
   const [selectStyles, setSelectStyles] = useState<Style[]>([]);
 
   const onSubmit = (formData: TattooFilterData) => {
     console.log("ENVIOU", formData);
+  };
+
+  const handleFormClear = () => {
+    setValue("name", "");
+    setValue("style", null);
+  };
+
+  const handleChangeStyle = (value: Style) => {
+    setValue("style", value);
+
+    const obj: TattooFilterData = {
+      name: getValues("name"),
+      style: getValues('style'),
+    };
+
+    console.log("ENVIOU", obj)
   };
 
   useEffect(() => {
@@ -56,11 +73,15 @@ const TattooFilter = () => {
                   placeholder="Estilos"
                   getOptionLabel={(style: Style) => style.name}
                   getOptionValue={(style: Style) => String(style.id)}
+                  onChange={(value) => handleChangeStyle(value as Style)}
                 />
               )}
             />
           </div>
-          <button className="btn btn-outline-secondary btn-tattoo-filter-clear">
+          <button
+            onClick={handleFormClear}
+            className="btn btn-outline-secondary btn-tattoo-filter-clear"
+          >
             LIMPAR <span className="btn-tattoo-filter-word">FILTRO</span>
           </button>
         </div>
