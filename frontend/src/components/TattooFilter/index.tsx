@@ -8,7 +8,7 @@ import { requestBackend } from "../../utils/request";
 
 type TattooFilterData = {
   name: String;
-  style: Style;
+  style: Style | null;
 };
 
 const TattooFilter = () => {
@@ -37,7 +37,7 @@ const TattooFilter = () => {
             placeholder="Nome da art"
             name="name"
           />
-          <button>
+          <button className="tattoo-filter-search-icon">
             <img src={SearchIcon} alt="" />
           </button>
         </div>
@@ -52,14 +52,15 @@ const TattooFilter = () => {
                   {...field}
                   options={selectStyles}
                   isClearable
-                  classNamePrefix="tattoo-crud-select"
+                  classNamePrefix="tattoo-filter-select"
+                  placeholder="Estilos"
                   getOptionLabel={(style: Style) => style.name}
                   getOptionValue={(style: Style) => String(style.id)}
                 />
               )}
             />
           </div>
-          <button className="btn btn-outline-secondary">Limpar</button>
+          <button className="btn btn-outline-secondary btn-tattoo-filter-clear">LIMPAR <span className="btn-tattoo-filter-word">FILTRO</span></button>
         </div>
       </form>
     </div>
