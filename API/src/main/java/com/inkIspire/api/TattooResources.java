@@ -22,9 +22,11 @@ public class TattooResources {
     }
 
     @GetMapping
-    public ResponseEntity<Page<TattooDTO>> findAllPaged(Pageable pageable){
-        Page<TattooDTO> listTattooResources = service.findAllPaged(pageable);
-
+    public ResponseEntity<Page<TattooDTO>> findAllPaged(
+            @RequestParam(value = "name", defaultValue = "") String name,
+            @RequestParam(value = "styleId", defaultValue = "0") Long styleId,
+            Pageable pageable) {
+        Page<TattooDTO> listTattooResources = service.findAllPaged(name.trim(), styleId, pageable);
         return ResponseEntity.ok().body(listTattooResources);
     }
 

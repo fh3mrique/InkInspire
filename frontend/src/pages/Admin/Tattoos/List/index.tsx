@@ -7,10 +7,11 @@ import { Tattoo } from "../../../../types/Tattoo";
 import { BASE_URL, requestBackend } from "../../../../utils/request";
 import { AxiosRequestConfig } from "axios";
 import Pagination from "../../../../components/Pagination";
-import TattooFilter from "../../../../components/TattooFilter";
+import TattooFilter, { TattooFilterData } from "../../../../components/TattooFilter";
 
 type ControlComponentsData = {
   activePage: number;
+  filterData: TattooFilterData;
 };
 const List = () => {
   const [page, setPage] = useState<SpringPage<Tattoo>>();
@@ -18,11 +19,16 @@ const List = () => {
   const [controlComponentsData, setControlComponentsData] =
     useState<ControlComponentsData>({
       activePage: 0,
+      filterData: {name: "", style: null}
     });
 
   const handlePageChange = (pageNumber: number) => {
-    setControlComponentsData({ activePage: pageNumber });
+    setControlComponentsData({ activePage: pageNumber, filterData: controlComponentsData.filterData });
   };
+  
+  const handleSubmitFilter = (data: TattooFilterData) => {
+    setControlComponentsData({ activePage: 0, filterData:data }); 
+  }
 
   const getTattoos = useCallback(() => {
     const config: AxiosRequestConfig = {
@@ -31,6 +37,8 @@ const List = () => {
       params: {
         page: controlComponentsData.activePage,
         size: 3,
+        name: controlComponentsData.filterData.name,
+        styleId: controlComponentsData.filterData.style?.id
       },
     };
 
@@ -49,7 +57,7 @@ const List = () => {
         <Link to="create">
           <button className="btn btn-primary btn-crud-add">Adicionar</button>
         </Link>
-        <TattooFilter />
+        <TattooFilter onSubmitFilter={handleSubmitFilter} />
       </div>
 
       <div className="row">

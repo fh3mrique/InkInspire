@@ -6,19 +6,23 @@ import { Style } from "../../types/style";
 import { useEffect, useState } from "react";
 import { requestBackend } from "../../utils/request";
 
-type TattooFilterData = {
+export type TattooFilterData = {
   name: String;
   style: Style | null;
 };
 
-const TattooFilter = () => {
+type Props ={
+  onSubmitFilter: (data: TattooFilterData) => void
+}
+
+const TattooFilter = ({onSubmitFilter}:Props) => {
   const { register, handleSubmit, control, setValue, getValues } =
     useForm<TattooFilterData>();
 
   const [selectStyles, setSelectStyles] = useState<Style[]>([]);
 
   const onSubmit = (formData: TattooFilterData) => {
-    console.log("ENVIOU", formData);
+    onSubmitFilter(formData);
   };
 
   const handleFormClear = () => {
@@ -34,7 +38,7 @@ const TattooFilter = () => {
       style: getValues('style'),
     };
 
-    console.log("ENVIOU", obj)
+    onSubmitFilter(obj)
   };
 
   useEffect(() => {

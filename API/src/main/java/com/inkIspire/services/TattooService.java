@@ -1,7 +1,9 @@
 package com.inkIspire.services;
 
 import com.inkIspire.domain.dtos.TattooDTO;
+import com.inkIspire.domain.entities.Style;
 import com.inkIspire.domain.entities.Tattoo;
+import com.inkIspire.domain.repositories.StyleRepository;
 import com.inkIspire.domain.repositories.TattoRepository;
 import com.inkIspire.exceptions.DatabaseException;
 import com.inkIspire.exceptions.EntityNotFoundExceptions;
@@ -19,16 +21,17 @@ import java.util.Optional;
 public class TattooService {
 
     private TattoRepository repository;
+    private StyleRepository styleRepository;
 
-    public TattooService(TattoRepository repository) {
+    public TattooService(TattoRepository repository, StyleRepository styleRepository) {
         this.repository = repository;
+        this.styleRepository = styleRepository;
     }
 
     @Transactional(readOnly = true)
-    public Page<TattooDTO> findAllPaged(Pageable pageable) {
-        Page<Tattoo> tattoos = repository.findAll(pageable);
-
-        return tattoos.map(tattoo -> new TattooDTO(tattoo));
+    public Page<TattooDTO> findAllPaged(String name, Long styleId, Pageable pageable) {
+        Page<Tattoo> tattoos = repository.find(name, (styleId == 0) ? null : styleId, pageable);
+        return tattoos.map(TattooDTO::new);
     }
 
     @Transactional(readOnly = true)
