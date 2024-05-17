@@ -1,24 +1,25 @@
-.price-tattoo-card-listing{
-    border: solid green 2px;
-    width: 90px;
-    min-width: 90px;
-    background-color: transparent;
-    text-align: center;
-    padding: 5px;
-
+.price-tattoo-card-listing {
+  border: solid green 2px;
+  width: 90px;
+  min-width: 90px;
+  background-color: transparent;
+  text-align: center;
+  padding: 5px;
 }
 
 .price-tattoo-card-listing {
-    position: absolute;
-    top: 75%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    background-color: transparent;
-    padding: 5px;
-    border: solid rgb(6, 37, 6) 2px;
-    width: 90px;
-    text-align: center;
-    color: rgb(6, 37, 6);
-    font-weight: bold;
+  position: absolute;
+  top: 75%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: transparent;
+  padding: 5px;
+  border: solid gold 2px;
+  width: 90px;
+  text-align: center;
+  color: gold;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2); /* Transparent background */
+  backdrop-filter: blur(10px); /* Blur effect */
 }

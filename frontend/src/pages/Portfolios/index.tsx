@@ -20,7 +20,7 @@ const Portfolios = () => {
       url: `${BASE_URL}/tattoo`,
       params: {
         page: 0,
-        size: 12,
+        size: 40,
       },
     };
 
