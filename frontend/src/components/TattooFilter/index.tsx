@@ -60,7 +60,9 @@ const TattooFilter = () => {
               )}
             />
           </div>
-          <button className="btn btn-outline-secondary btn-tattoo-filter-clear">LIMPAR <span className="btn-tattoo-filter-word">FILTRO</span></button>
+          <button className="btn btn-outline-secondary btn-tattoo-filter-clear">
+            LIMPAR <span className="btn-tattoo-filter-word">FILTRO</span>
+          </button>
         </div>
       </form>
     </div>

@@ -48,26 +48,36 @@
   display: none;
 }
 
-.tattoo-filter-select{
-
+.tattoo-filter-select__control {
+  font-size: 1em;
+  letter-spacing: -0.015em;
+  color: #263238 !important;
+  border: none !important;
+  border-bottom: 1px solid #e1e1e1 !important;
 }
-
-.tattoo-filter-select__control{
-    font-size: 1em;
-    letter-spacing: -0.015em;
-    color: #263238 !important;
-    border: none !important;
-    border-bottom: 1px solid #e1e1e1 !important;
-  }
 
 @media (min-width: 576px) {
   .btn-tattoo-filter-word {
-    display: unset ;
+    display: unset;
   }
 }
 @media (min-width: 768px) {
   .tatoo-filter-container {
     margin-left: 20px;
+    flex: 1;
+    padding: 10px 15px;
+  }
+  .tattoo-filter-form {
+    display: flex;
+  }
+
+  .tattoo-filter-name-container {
+    flex: 1;
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+  .tattoo-filter-bottom-container {
     flex: 1;
   }
 }
