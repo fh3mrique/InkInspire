@@ -7,6 +7,7 @@ import { Tattoo } from "../../../../types/Tattoo";
 import { BASE_URL, requestBackend } from "../../../../utils/request";
 import { AxiosRequestConfig } from "axios";
 import Pagination from "../../../../components/Pagination";
+import TattooFilter from "../../../../components/TattooFilter";
 
 type ControlComponentsData = {
   activePage: number;
@@ -36,7 +37,7 @@ const List = () => {
     requestBackend(config).then((response) => {
       setPage(response.data);
     });
-  }, [controlComponentsData])
+  }, [controlComponentsData]);
 
   useEffect(() => {
     getTattoos();
@@ -48,7 +49,7 @@ const List = () => {
         <Link to="create">
           <button className="btn btn-primary btn-crud-add">Adicionar</button>
         </Link>
-        <div className="base-card tatoo-filter-container">Search bar</div>
+        <TattooFilter />
       </div>
 
       <div className="row">
