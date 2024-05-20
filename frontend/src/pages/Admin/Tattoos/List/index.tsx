@@ -55,7 +55,7 @@ const List = () => {
     <div>
       <div className="tatto-crud-bar-container">
         <Link to="create">
-          <button className="btn btn-primary btn-crud-add">Adicionar</button>
+          <button className="btn-crud-add">Adicionar</button>
         </Link>
         <TattooFilter onSubmitFilter={handleSubmitFilter} />
       </div>

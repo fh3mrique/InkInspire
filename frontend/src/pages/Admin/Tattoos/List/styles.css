@@ -11,9 +11,12 @@
     border-radius: 10px;
     letter-spacing: 0.025em;
     margin-bottom: 20px;
+    background-color: rgb(32, 30, 30);
+    padding: 5px;   
 }
+
 .btn-crud-add:hover{
-    background-color: #FFA500;
+    background-color: rgb(26, 24, 24);
     color: white;
 }
 

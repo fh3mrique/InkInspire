@@ -34,11 +34,6 @@ const TattoCrudCard = ({ tattoo, onDelete }: Props) => {
 
         <div className="bottom-card-crud">
           <div>
-            <p>
-              {/* {tattoo.artist.name
-                ? tattoo.artist.name
-                : "Nome do artista indisponível"} */}
-            </p>
             <p>{tattoo.name}</p>
             <p>
               <span>Preço: </span>R$ {formatPrice(tattoo.price)}

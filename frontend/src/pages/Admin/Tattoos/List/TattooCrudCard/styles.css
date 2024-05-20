@@ -1,10 +1,9 @@
 .card-crud-container{
-    height: 450px;
+    height: 400px;
     width: 95%;
     padding: 20px;
     background-color: rgb(37, 35, 35);
-    margin-bottom: 30px;
-    /* box-shadow: -5px -5px 30px 5px red, 5px 5px 30px 5px blue; */
+    margin-bottom: 20px;
     font-family: "Space Mono", monospace;
     border-radius: 10px;
 }
@@ -30,13 +29,14 @@
 }
 
 .btn-update-tattoo-card{
-    color: rgb(184, 20, 20);
-    border: solid 2px rgb(184, 20, 20);
+    color: rgb(88, 85, 85);
+    border: solid 2px rgb(88, 85, 85);
 }
 
 .btn-delete-tattoo-card{
-    color: rgb(88, 85, 85);
-    border: solid 2px rgb(88, 85, 85);
+    color: rgb(184, 20, 20);
+    border: solid 2px rgb(184, 20, 20);
+    background-color: aqua;
 }
 
 @media(min-width: 576px){
@@ -44,9 +44,24 @@
         width: 100px;
         height: 30px;
         margin-left: 5px;
-    }
-    
+    } 
 }
+
+/* @media(min-width: 350px){
+    .btn-tattoo-card-container button{
+        width: 100px;
+        height: 30px;
+    } 
+    .card-crud-container{
+        background-color: aqua;
+        height: 420px;
+    }
+
+    .card-crud-container img{
+        width: 80%;
+        height: 40%;
+    }
+} */
 
 @media(min-width: 768px){
 
@@ -55,14 +70,14 @@
     }
     
     .card-crud-container{
-        height: 200px;
+        height: 136px;
         display: flex;
         justify-content: space-between;
     }
 
     .card-crud-container img{
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
     }
 
     .btn-tattoo-card-container{
@@ -76,7 +91,6 @@
         width: 180px;
         height: 40px;
         background-color: transparent;
-        margin-top: 20px;
+        margin-top: 10px;
     }
-    
 }
