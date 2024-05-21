@@ -7,8 +7,8 @@ import Tattoos from "./Tattoos";
 // @ts-ignore
 const PrivateRoute = ({ children, redirectTo }) => {
   const isAuthenticated = localStorage.getItem("AuthData") !== null;
-  console.log("isAuth: ", isAuthenticated);
-  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+/*   console.log("isAuth: ", isAuthenticated);
+ */  return isAuthenticated ? children : <Navigate to={redirectTo} />;
 };
 
 const Admin = () => {

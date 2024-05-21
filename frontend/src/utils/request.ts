@@ -83,15 +83,13 @@ export const removeAuthData = () => {
   return !!authData && !!authData.access_token;
 }; */
 
-/* // Add a request interceptor
+// Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
-    console.log("INTECPTOR ANTES DA REQUISIÇÃO");
     return config;
   },
   function (error) {
     // Do something with request error
-    console.log("INTECPTOR ANTES DA REQUISIÇÃO");
     return Promise.reject(error);
   }
 );
@@ -101,16 +99,14 @@ axios.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    console.log("INTECPTOR RESPOSTA COM SUCESSO");
     return response;
   },
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    console.log("INTECPTOR RESPOSTA COM ERROR");
     return Promise.reject(error);
   }
-); */
+);
 
 /* Função que pega o jwt do local storage e decodifica usando a lib jwt decoder */
 export const getTokenData = (): TokenData | undefined => {
