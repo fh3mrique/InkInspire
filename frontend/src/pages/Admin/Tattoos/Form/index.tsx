@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Select, { GroupBase, StylesConfig } from "react-select";
 import { Style } from "../../../../types/style";
 import CurrencyInput from "react-currency-input-field";
+import { toast } from "react-toastify";
 
 type UrlParams = {
   tattooId: string;
@@ -58,8 +59,10 @@ const Form = () => {
   }, [setValue]);
 
   const onSubmit = (formData: Tattoo) => {
-
-    const requesthandled = {...formData, price : String(formData.price).replace(',', '.')}
+    const requesthandled = {
+      ...formData,
+      price: String(formData.price).replace(",", "."),
+    };
 
     const config: AxiosRequestConfig = {
       method: isEditing ? "PUT" : "POST",
@@ -68,10 +71,14 @@ const Form = () => {
       withCredentials: true,
     };
 
-    requestBackend(config).then((response) => {
-      console.log(response.data);
-      navigate("/admin/tattoo");
-    });
+    requestBackend(config)
+      .then(() => {
+        toast.info("Cadastro da art realizado com sucesso!!");
+        navigate("/admin/tattoo");
+      })
+      .catch(() => {
+        toast.error("Erro ao cadastrar art");
+      });
   };
 
   const handleCancel = () => {
@@ -150,7 +157,7 @@ const Form = () => {
               </div>
 
               <div className="margin-bottom-30">
-              <Controller
+                <Controller
                   name="price"
                   rules={{ required: true }}
                   control={control}
@@ -166,9 +173,9 @@ const Form = () => {
                       value={field.value}
                       onChange={field.onChange}
                       /* type="number" */
-
                     />
-                  )}/>
+                  )}
+                />
                 <div className="invalid-feedback d-block">
                   {errors.price?.message}
                 </div>
