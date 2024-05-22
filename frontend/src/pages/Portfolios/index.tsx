@@ -34,7 +34,7 @@ const Portfolios = () => {
   return (
     <div className="container my-5">
       {loading ? ( // Exibe o loader enquanto estiver carregando
-        <h1>Carregando...</h1>
+        <div className="loader"></div>
       ) : (
         <Box sx={{ width: "100%" }}>
           {page && ( // Verifica se page não é undefined
