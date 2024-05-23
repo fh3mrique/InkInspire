@@ -8,6 +8,9 @@ InkInspire é uma aplicação web fullstack construída inteiramente por mim, co
 
 Através do InkInspire, os usuários podem buscar estilos e modelos de tatuagens, consultar os preços das artes que desejam fazer e explorar os trabalhos de diversos tatuadores. Além disso, a aplicação permite que os próprios tatuadores cadastrem, editem e excluam suas próprias artes, criando assim um artbook online acessível ao público.
 
+# Classes do projeto
+![Modelo Conceitual](https://github.com/fh3mrique/assets/blob/main/Diagrama%20sem%20nome.drawio%20(1).png)
+
 # Layout web
 ### Collection Resources: 
 A API fornece uma coleção de recursos, onde os dados são modelados com a granularidade necessária para os requisitos e, em seguida, exibidos em uma interface web que segue a filosofia de layout em alvenaria (masonry).
@@ -58,9 +61,6 @@ O sistema utiliza a biblioteca react-hook-form para o controle e verificação d
 
 ## Responsividade
 ![Mobile 1](https://github.com/fh3mrique/assets/blob/main/Capturar.PNG) ![Mobile 2](https://github.com/fh3mrique/assets/blob/main/Capturarhome1.PNG)
-
-## Classes do projeto
-![Modelo Conceitual](https://github.com/fh3mrique/assets/blob/main/diagrama.PNG)
 
 
 # Tecnologias utilizadas
