@@ -24,3 +24,42 @@
   background: rgba(255, 255, 255, 0.2); /* Transparent background */
   backdrop-filter: blur(10px); /* Blur effect */
 }
+
+
+@media (width <= 1355px){
+  .price-tattoo-card-listing {
+    top: 75%;
+    left: 60%;
+    right: 0%;
+  }
+} 
+
+
+
+@media (width < 755px) {
+  .price-tattoo-card-listing {
+    top: 75%;
+    left: 60%;
+    right: 0%;
+  }
+
+  .teste {
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+  }
+
+  .ji {
+    text-align: center;
+  }
+
+  .name-tatto-listing-page {
+    text-align: center;
+  }
+}
+
+@media (width < 353px) {
+  .price-tattoo-card-listing {
+    display: unset;
+  }
+}

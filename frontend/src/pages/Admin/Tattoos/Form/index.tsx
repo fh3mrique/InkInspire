@@ -168,11 +168,8 @@ const Form = () => {
                         errors.price ? "is-invalid" : ""
                       }`}
                       decimalScale={2}
-                      /* disableGroupSeparators={true} */
-                      /* prefix="$" */
                       value={field.value}
                       onChange={field.onChange}
-                      /* type="number" */
                     />
                   )}
                 />

@@ -50,6 +50,7 @@
     display: flex;
     margin-left: -30px; 
     width: auto;
+    background-color: aqua;
   }
   
   .masonry-grid-column {
@@ -62,8 +63,6 @@
     display: block;
     margin-bottom: 30px; /* gutter size */
   }
-
-
   .img-tatoo{
     max-width: 300px;
   }

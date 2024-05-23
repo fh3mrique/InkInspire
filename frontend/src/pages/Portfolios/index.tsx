@@ -14,6 +14,8 @@ import CardTattoo from "../../components/CardTattoo";
 const Portfolios = () => {
   const [page, setPage] = useState<SpringPage<Tattoo>>();
   const [loading, setLoading] = useState(true);
+  const [columns, setColumns] = useState(4); // Estado para controlar o número de colunas
+
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
@@ -31,6 +33,32 @@ const Portfolios = () => {
     });
   }, []);
 
+  useEffect(() => {
+
+    const updateColumns = () => {
+      if (window.innerWidth <= 765){
+        setColumns(1)
+      }
+      else if (window.innerWidth <= 986) {
+        setColumns(2);
+      } else if (window.innerWidth <= 1399) {
+        setColumns(3);
+      } 
+      else {
+        setColumns(4);
+      }
+    };
+
+    updateColumns();
+    window.addEventListener("resize", updateColumns);
+
+    return () => {
+      window.removeEventListener("resize", updateColumns);
+    };
+  }, []);
+
+
+
   return (
     <div className="container my-5">
       {loading ? ( // Exibe o loader enquanto estiver carregando
@@ -38,13 +66,13 @@ const Portfolios = () => {
       ) : (
         <Box sx={{ width: "100%" }}>
           {page && ( // Verifica se page não é undefined
-            <ImageList variant="masonry" cols={4} gap={18}>
+            <ImageList variant="masonry" cols={columns} gap={18}>
               {page.content.map((tattoo) => (
                 <ImageListItem key={tattoo.id}>
                   <Link to={`/portfolios/${tattoo.id}`}>
                     <CardTattoo tattoo={tattoo} />
                   </Link>
-                  <ImageListItemBar position="below" title={tattoo.name} />
+                  <ImageListItemBar className="name-tatto-listing-page" position="below" title={tattoo.name} />
                 </ImageListItem>
               ))}
             </ImageList>

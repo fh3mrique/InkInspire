@@ -7,7 +7,7 @@ type Props = {
 }
 
 const CardTattoo = ({tattoo}:  Props) => {
-  return <div>
+  return <div className="ji">
     <img src={tattoo.artUrl} alt="" loading="lazy" className="img-tatoo"/>
     <div className="teste">
         <p className="price-tattoo-card-listing">

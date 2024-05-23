@@ -1,14 +1,13 @@
-import ArrowIcon from "../../assets/img/arrow.svg";
 import "./styles.css";
 import { formatPrice } from "../../utils/formaters";
 import { Tattoo } from "../../types/Tattoo";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../utils/request";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Arrowback from "../../assets/img/arrow-back.svg";
 
 const TattooDetails = () => {
-
   const [tattoo, setTattoo] = useState<Tattoo>();
 
   type UrlParams = {
@@ -16,18 +15,18 @@ const TattooDetails = () => {
   };
   const { tattooId } = useParams<UrlParams>();
 
-  useEffect(() =>{
-   axios.get(BASE_URL + '/tattoo' + `/${tattooId}`)
-   .then(response => {
-    setTattoo(response.data)
-   });
-  }, [])
+  useEffect(() => {
+    axios.get(BASE_URL + "/tattoo" + `/${tattooId}`).then((response) => {
+      setTattoo(response.data);
+    });
+  }, []);
 
   return (
-    <div className="product-details-container my-5">
+    <div className="product-details-container my-3">
       <div className="goback-container">
-        <img src={ArrowIcon} alt="" />
-        <h2>VOLTAR</h2>
+        <Link to="/portfolios">
+          <img src={Arrowback} />
+        </Link>
       </div>
 
       <div className="tattoo-card-container">
@@ -57,9 +56,16 @@ const TattooDetails = () => {
               <p>
                 STYLE: <span>{tattoo?.style.name}</span>
               </p>
-              <text>DESCRIÇÃO: <span>{tattoo?.description}</span></text>
+              <text>
+                DESCRIÇÃO: <span>{tattoo?.description}</span>
+              </text>
 
-              <p className="price-tattoo-details">PREÇO: {tattoo?.price == undefined ? 'VAZIO' : formatPrice(tattoo.price)}</p>
+              <p className="price-tattoo-details">
+                PREÇO:{" "}
+                {tattoo?.price == undefined
+                  ? "VAZIO"
+                  : formatPrice(tattoo.price)}
+              </p>
             </div>
           </div>
         </div>
