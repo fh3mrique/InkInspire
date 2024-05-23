@@ -5,6 +5,7 @@ import Portfolios from "./pages/Portfolios";
 import TattooDetails from "./pages/TattooDetails";
 import Admin from "./pages/Admin";
 import Auth from "./pages/Admin/Auth";
+import PageNotFound from "./components/PageNotFound";
 
 const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ const AppRouter = () => {
         <Route path="/portfolios/:tattooId" element={<TattooDetails/>} />
         <Route path="/admin/auth/*" element={<Auth/>}/> 
         <Route path="/admin/*" element={<Admin/>} />
+        <Route path="*" element={<PageNotFound/>} />
       </Routes>
     </BrowserRouter>
   );
