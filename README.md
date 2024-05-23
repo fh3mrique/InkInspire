@@ -9,24 +9,47 @@ InkInspire é uma aplicação web fullstack construída inteiramente por mim, co
 Através do InkInspire, os usuários podem buscar estilos e modelos de tatuagens, consultar os preços das artes que desejam fazer e explorar os trabalhos de diversos tatuadores. Além disso, a aplicação permite que os próprios tatuadores cadastrem, editem e excluam suas próprias artes, criando assim um artbook online acessível ao público.
 
 # Layout web
-### Collection Resource: 
+### Collection Resources: 
 A API fornece uma coleção de recursos, onde os dados são modelados com a granularidade necessária para os requisitos e, em seguida, exibidos em uma interface web que segue a filosofia de layout em alvenaria (masonry).
 
 ![Web 1](https://github.com/fh3mrique/assets/blob/main/portgif.gif)
 
 
+### Pageable Resources: 
+A API oferece busca paginada de recursos por nome e estilo, aprimorando a experiência do usuário ao facilitar a localização de recursos específicos.
+
+![Web 1](https://github.com/fh3mrique/assets/blob/main/searchFind.gif)
+
+
 ### Singleton Resource:
 A API fornece um recurso único, permitindo que o usuário, ao clicar em um recurso, seja redirecionado para uma página com mais informações sobre a arte, como preço, estilo e o artista responsável, melhorando o poder de decisão do cliente.
 
-
-
 ![Web 1](https://github.com/fh3mrique/assets/blob/main/print3.png)
+
+
+# Gerenciamento de eventos complexos
+No projeto, o gerenciamento de eventos complexos é fundamental para proporcionar uma experiência de usuário eficiente e intuitiva. Um dos principais exemplos é a sincronização entre o componente de filtro de buscas por tattoos e o componente de paginação, implementada através do padrão de projeto Observer.
+
+### Sincronização entre Filtros de Busca e Paginação
+O componente de filtro de buscas por tattoos está perfeitamente sincronizado com o componente de paginação, garantindo que a busca de recursos seja paginada de forma eficiente. Isso significa que, ao aplicar filtros de busca, os resultados exibidos são automaticamente atualizados e a paginação se ajusta para refletir os novos dados.
+
+
+O componente de filtro de buscas por tattoos está sincronizado com o componete de paginação, ligados atraves do padrão de prejeto observe o sistema fornece uma busca de recursos paginada 
+
+![Web 1](https://github.com/fh3mrique/assets/blob/main/paginationEvent.gif)
+
+# UI e UX da aplicação
+O sistema utiliza loaders, toasts e uma página de erros para aprimorar a experiência do usuário. Loaders indicam visualmente que uma operação está em andamento, toasts fornecem feedback imediato sobre as ações do usuário, e a página de erros oferece informações claras e úteis em caso de problemas, garantindo uma navegação mais fluida e informativa.
+
+![Web 1](https://github.com/fh3mrique/assets/blob/main/loaders.gif)
+![Web 1](https://github.com/fh3mrique/assets/blob/main/Toasty.gif)
+
 
 ## Segurança e Validação
 ### Autenticação e Restrição de Conteúdo Baseado em Perfil: 
 O sistema possui autenticação e autorização implementadas usando o módulo Spring Security com o fluxo OAuth2 e JWT. No front-end, foi implementada a restrição de rotas baseada em perfil. Todos os usuários podem acessar a tela de portfólios, mas apenas usuários logados têm acesso a certas rotas protegidas, como a aba admin, que contém as rotas responsáveis pelas operações de cadastrar, atualizar e deletar artes. Entre os usuários logados, apenas aqueles com perfil de administrador, como Maria, podem excluir outros usuários, pois possuem um papel especial. Por outro lado, Alex, que não possui perfil de administrador, nem sequer vê a aba de usuários, restringindo o acesso dos usuários logados com base em seus níveis de autorização. Além disso, usuários que não estão logados, ao tentarem acessar uma rota protegida, serão redirecionados automaticamente para a tela de login.
 
-![Web 2](https://github.com/fh3mrique/assets/blob/main/authgif.gif)
+![Web 2](https://github.com/fh3mrique/assets/blob/main/chrome-capture-2024-5-23%20(1).gif)
 
 ### Validações de formulario
 O sistema utiliza a biblioteca react-hook-form para o controle e verificação de formulários, proporcionando uma maneira eficiente e simplificada de gerenciar os estados dos formulários no React. Para garantir que os dados inseridos atendam a requisitos específicos, são usadas expressões regulares (regex) para validação. 
