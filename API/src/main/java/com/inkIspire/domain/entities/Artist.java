@@ -3,6 +3,9 @@ package com.inkIspire.domain.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,20 +16,27 @@ public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String name;
 
+    @NotNull
     private String photo;
 
+    @NotBlank
     @Column(columnDefinition = "TEXT")
     private String perfil;
+    @NotBlank
     private String contact;
+
+    @Email
+    @NotNull
     private String email;
 
     @JsonIgnore
     @OneToMany(mappedBy = "artist")
     private Set<Tattoo> tattoos = new HashSet<>();
 
-    public Artist(){
+    public Artist() {
 
     }
 

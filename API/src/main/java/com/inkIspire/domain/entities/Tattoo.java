@@ -1,6 +1,8 @@
 package com.inkIspire.domain.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -10,12 +12,15 @@ public class Tattoo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String name;
+    @NotBlank
     @Column(columnDefinition = "TEXT")
     private String description;
     @ManyToOne
     @JoinColumn(name = "style_id")
     private Style style;
+    @NotNull
     private BigDecimal price;
 
     @Column(name = "art_url")

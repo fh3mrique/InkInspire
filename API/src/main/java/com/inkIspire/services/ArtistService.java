@@ -11,6 +11,7 @@ import com.inkIspire.services.patterns.CrudGenericService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
@@ -26,6 +27,8 @@ public class ArtistService implements CrudGenericService<ArtistDTO, Long> {
         this.repository = repository;
         this.tattoRepository = tattoRepository;
     }
+
+    @Transactional(readOnly = true)
     public Page<ArtistDTO> findAllPaged(Pageable pageable) {
 
         Page<Artist> artists = repository.findAll(pageable);
@@ -34,6 +37,7 @@ public class ArtistService implements CrudGenericService<ArtistDTO, Long> {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ArtistDTO findById(Long id) {
         Optional<Artist> obj = repository.findById(id);
 
@@ -43,6 +47,7 @@ public class ArtistService implements CrudGenericService<ArtistDTO, Long> {
     }
 
     @Override
+    @Transactional
     public ArtistDTO insert(ArtistDTO artistDTO) {
         Artist entity = new Artist();
 
@@ -54,6 +59,7 @@ public class ArtistService implements CrudGenericService<ArtistDTO, Long> {
     }
 
     @Override
+    @Transactional
     public ArtistDTO update(Long id, ArtistDTO artistDTO) {
         try {
             Artist artist = repository.getById(id);
@@ -69,6 +75,7 @@ public class ArtistService implements CrudGenericService<ArtistDTO, Long> {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public void deleteById(Long aLong) {
 
     }

@@ -1,7 +1,6 @@
 package com.inkIspire.services;
 
 import com.inkIspire.domain.dtos.TattooDTO;
-import com.inkIspire.domain.entities.Style;
 import com.inkIspire.domain.entities.Tattoo;
 import com.inkIspire.domain.repositories.StyleRepository;
 import com.inkIspire.domain.repositories.TattoRepository;
@@ -43,7 +42,7 @@ public class TattooService {
         return new TattooDTO(entity);
     }
 
-    @Transactional()
+    @Transactional
     public TattooDTO insert(TattooDTO dto) {
 
         Tattoo entity = new Tattoo();
@@ -55,6 +54,7 @@ public class TattooService {
         return new TattooDTO(entity);
     }
 
+    @Transactional
     public TattooDTO update(Long id, TattooDTO tattooDTO) {
         try {
             Tattoo tattoo = repository.getById(id);
@@ -68,8 +68,8 @@ public class TattooService {
         }
     }
 
+    @Transactional
     public void delete(Long id) {
-
         try {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
@@ -86,5 +86,4 @@ public class TattooService {
         entity.setStyle(dto.style());
         entity.setArtUrl(dto.artUrl());
     }
-
 }

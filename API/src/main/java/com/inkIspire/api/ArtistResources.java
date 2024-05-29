@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -25,21 +26,21 @@ public class ArtistResources {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ArtistDTO>> findAllPaged(Pageable pageable){
+    public ResponseEntity<Page<ArtistDTO>> findAllPaged(@Valid Pageable pageable) {
         Page<ArtistDTO> listArtistResources = service.findAllPaged(pageable);
 
         return ResponseEntity.ok().body(listArtistResources);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ArtistDTO> findById(@PathVariable Long id){
+    public ResponseEntity<ArtistDTO> findById(@Valid @PathVariable Long id) {
         ArtistDTO artistSigularResource = service.findById(id);
 
-        return  ResponseEntity.ok().body(artistSigularResource);
+        return ResponseEntity.ok().body(artistSigularResource);
     }
 
     @PostMapping
-    public ResponseEntity<ArtistDTO> insert(@RequestBody ArtistDTO artistDTO){
+    public ResponseEntity<ArtistDTO> insert(@Valid @RequestBody ArtistDTO artistDTO) {
         ArtistDTO artistTattoo = service.insert(artistDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(artistDTO.getId()).toUri();
 
@@ -47,7 +48,7 @@ public class ArtistResources {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArtistDTO> update(@PathVariable Long id, @RequestBody ArtistDTO artistDTO ){
+    public ResponseEntity<ArtistDTO> update(@Valid @PathVariable Long id, @RequestBody ArtistDTO artistDTO) {
         artistDTO = service.update(id, artistDTO);
 
         return ResponseEntity.ok().body(artistDTO);

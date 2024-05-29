@@ -20,7 +20,7 @@ public class StyleResources {
     }
 
     @GetMapping
-    public ResponseEntity<List<Style>> findAll(){
+    public ResponseEntity<List<Style>> findAll() {
         List<Style> stylesResources = repository.findAll();
 
         return ResponseEntity.ok().body(stylesResources);
