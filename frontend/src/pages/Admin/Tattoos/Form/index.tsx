@@ -73,7 +73,12 @@ const Form = () => {
 
     requestBackend(config)
       .then(() => {
-        toast.info("Cadastro da art realizado com sucesso!!");
+        if (isEditing) {
+          toast.info("Atualização feita com sucesso");
+        } else {
+          toast.info("Cadastro da art realizado com sucesso!!");
+        }
+
         navigate("/admin/tattoo");
       })
       .catch(() => {
