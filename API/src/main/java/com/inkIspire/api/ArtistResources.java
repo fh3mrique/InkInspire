@@ -53,4 +53,6 @@ public class ArtistResources {
 
         return ResponseEntity.ok().body(artistDTO);
     }
+
+
 }

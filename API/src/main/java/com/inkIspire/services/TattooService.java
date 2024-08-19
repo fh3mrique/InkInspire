@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TattooService {
@@ -77,6 +79,16 @@ public class TattooService {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Violação na integridade do banco");
         }
+    }
+
+    public List<Tattoo> getTattoosByArtistId(Long artistId) {
+        // Implementando a lógica diretamente no serviço
+        List<Tattoo> tattoos = repository.findAll(); // Busca todas as tattoos
+
+        // Filtra as tattoos pelo ID do artista
+        return tattoos.stream()
+                .filter(tattoo -> tattoo.getArtist().getId().equals(artistId))
+                .collect(Collectors.toList());
     }
 
     private void copyDtoForEntity(TattooDTO dto, Tattoo entity) {

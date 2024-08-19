@@ -1,6 +1,7 @@
 package com.inkIspire.api;
 
 import com.inkIspire.domain.dtos.TattooDTO;
+import com.inkIspire.domain.entities.Tattoo;
 import com.inkIspire.services.TattooService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/tattoo")
@@ -57,5 +59,11 @@ public class TattooResources {
         service.delete(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/artist/{artistId}")
+    public ResponseEntity<List<Tattoo>> getTattoosByArtistId(@PathVariable Long artistId) {
+        List<Tattoo> tattoos = service.getTattoosByArtistId(artistId);
+        return ResponseEntity.ok(tattoos);
     }
 }
