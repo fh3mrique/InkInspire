@@ -33,7 +33,7 @@ const List = () => {
   const getTattoos = useCallback(() => {
     const config: AxiosRequestConfig = {
       method: "GET",
-      url: `${BASE_URL}/tattoo`,
+      url: `${BASE_URL}/tattoo/`,
       params: {
         page: controlComponentsData.activePage,
         size: 3,

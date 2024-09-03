@@ -17,7 +17,7 @@ const Admin = () => {
       <NavBar />
       <div className="admin-content">
         <Routes>
-          <Route path="/" element={<Navigate to="tattoo" replace />} />
+          <Route path="/" element={<Navigate to="tattoo/" replace />} />
           <Route
             path="tattoo/*"
             element={
