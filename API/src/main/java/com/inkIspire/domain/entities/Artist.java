@@ -36,6 +36,7 @@ public class Artist {
     @OneToMany(mappedBy = "artist")
     private Set<Tattoo> tattoos = new HashSet<>();
 
+
     public Artist() {
 
     }
@@ -87,6 +88,7 @@ public class Artist {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     public Set<Tattoo> getTattoos() {
         return tattoos;

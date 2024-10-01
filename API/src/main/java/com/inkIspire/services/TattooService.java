@@ -1,7 +1,10 @@
 package com.inkIspire.services;
 
+import com.inkIspire.domain.dtos.InterestDTO;
 import com.inkIspire.domain.dtos.TattooDTO;
+import com.inkIspire.domain.entities.Interest;
 import com.inkIspire.domain.entities.Tattoo;
+import com.inkIspire.domain.repositories.InterestRepository;
 import com.inkIspire.domain.repositories.StyleRepository;
 import com.inkIspire.domain.repositories.TattoRepository;
 import com.inkIspire.exceptions.DatabaseException;
@@ -23,10 +26,12 @@ public class TattooService {
 
     private TattoRepository repository;
     private StyleRepository styleRepository;
+    private InterestRepository interestRepository;
 
-    public TattooService(TattoRepository repository, StyleRepository styleRepository) {
+    public TattooService(TattoRepository repository, StyleRepository styleRepository, InterestRepository interestRepository) {
         this.repository = repository;
         this.styleRepository = styleRepository;
+        this.interestRepository = interestRepository;
     }
 
     @Transactional(readOnly = true)
@@ -89,6 +94,21 @@ public class TattooService {
         return tattoos.stream()
                 .filter(tattoo -> tattoo.getArtist().getId().equals(artistId))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public InterestDTO insertInterest(InterestDTO dto) {
+        Tattoo tattoo = repository.findById(dto.getTattooId())
+                .orElseThrow(() -> new EntityNotFoundExceptions("Tattoo not found"));
+
+        Interest interest = new Interest();
+        interest.setName(dto.getName());
+        interest.setContact(dto.getContact());
+        interest.setMessage(dto.getMessage());
+        interest.setTattoo(tattoo);
+
+        interest = interestRepository.save(interest);
+        return new InterestDTO(interest.getId(), interest.getName(), interest.getContact(), interest.getMessage(), tattoo.getId());
     }
 
     private void copyDtoForEntity(TattooDTO dto, Tattoo entity) {

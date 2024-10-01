@@ -1,5 +1,3 @@
-// src/pages/TattooDetails.tsx
-
 import "./styles.css";
 import { formatPrice } from "../../utils/formaters";
 import { Tattoo } from "../../types/Tattoo";
@@ -8,11 +6,14 @@ import axios from "axios";
 import { BASE_URL } from "../../utils/request";
 import { Link, useParams } from "react-router-dom";
 import Arrowback from "../../assets/img/arrow-back.svg";
+import { useForm } from "react-hook-form";
+import Modal from "react-modal";
 
 const TattooDetails = () => {
   const [tattoo, setTattoo] = useState<Tattoo>();
   const [recommendedTattoos, setRecommendedTattoos] = useState<Tattoo[]>([]);
   const [startIndex, setStartIndex] = useState(0); // Estado para o índice inicial visível
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar o modal
 
   type UrlParams = {
     tattooId: string;
@@ -20,20 +21,30 @@ const TattooDetails = () => {
   const { tattooId } = useParams<UrlParams>();
 
   useEffect(() => {
-    // Fetch the tattoo details
     axios.get(`${BASE_URL}/tattoo/${tattooId}`).then((response) => {
       setTattoo(response.data);
-
-      // Fetch recommended tattoos for the artist
-      const artistId = response.data.artist.id; // Get the artist's ID from the tattoo details
+      const artistId = response.data.artist.id;
       axios.get(`${BASE_URL}/tattoo/artist/${artistId}`).then((res) => {
-        // Store only the first 5 tattoos
         setRecommendedTattoos(res.data.slice(0, 20));
       });
     });
   }, [tattooId]);
 
-  // Funções para navegar no carrossel
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    // Aqui você pode enviar os dados via uma requisição à API
+    // Exemplo: axios.post(`${BASE_URL}/interesse`, data);
+    reset(); // Limpa o formulário após o envio
+    setIsModalOpen(false); // Fecha o modal
+  };
+
   const handlePrev = () => {
     setStartIndex((prevIndex) =>
       prevIndex === 0 ? recommendedTattoos.length - 3 : prevIndex - 1
@@ -85,6 +96,14 @@ const TattooDetails = () => {
                 Descrição: <span>{tattoo?.description}</span>
               </p>
 
+              {/* Botão para abrir o modal */}
+              <button
+                className="btn-interesse"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Interesse
+              </button>
+
               <p className="price-tattoo-details">
                 Preço:{" "}
                 {tattoo?.price === undefined
@@ -100,22 +119,75 @@ const TattooDetails = () => {
       <div className="recommendations-section">
         <h3>Outras artes de {tattoo?.artist.name} que talvez você goste</h3>
         <div className="carousel-container">
-          <button onClick={handlePrev} className="carousel-button">{"<"}</button>
+          <button onClick={handlePrev} className="carousel-button">
+            {"<"}
+          </button>
           <div className="carousel-items">
-            {recommendedTattoos.slice(startIndex, startIndex + 3).map((recommendedTattoo) => (
-              <div key={recommendedTattoo.id} className="recommended-tattoo-card">
-                <img
-                  src={recommendedTattoo.artUrl}
-                  alt={recommendedTattoo.name}
-                  className="tattoo-image"
-                />
-                <p className="tattoo-name">{recommendedTattoo.name}</p>
-              </div>
-            ))}
+            {recommendedTattoos
+              .slice(startIndex, startIndex + 3)
+              .map((recommendedTattoo) => (
+                <div
+                  key={recommendedTattoo.id}
+                  className="recommended-tattoo-card"
+                >
+                  <img
+                    src={recommendedTattoo.artUrl}
+                    alt={recommendedTattoo.name}
+                    className="tattoo-image"
+                  />
+                  <p className="tattoo-name">{recommendedTattoo.name}</p>
+                </div>
+              ))}
           </div>
-          <button onClick={handleNext} className="carousel-button">{">"}</button>
+          <button onClick={handleNext} className="carousel-button">
+            {">"}
+          </button>
         </div>
       </div>
+
+      {/* Modal para o formulário de interesse */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <h2>Demonstrar Interesse</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="contact-buyer">
+            <div className="input-tatto-form">
+              <label>Nome:</label>
+              <input 
+                {...register("name", { required: "Nome é obrigatório" })}
+                placeholder="Seu nome"
+              />
+            </div>
+
+            <div className="input-tatto-form">
+              <label>Contato:</label>
+              <input className="base-input"
+                {...register("contact", { required: "Contato é obrigatório" })}
+                placeholder="Seu contato"
+              />
+            </div>
+          </div>
+
+          <div className="input-tatto-form">
+            <label>Mensagem:</label>
+            <textarea className="text-area-input-tattoo"
+              {...register("message", { required: "Mensagem é obrigatória" })}
+              placeholder="Escreva sua mensagem"
+            />
+          </div>
+
+          <div className="modal-buttons">
+            <button className="btn" type="submit">Enviar Interesse</button>
+            <button className="btn" type="button" onClick={() => setIsModalOpen(false)}>
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 };

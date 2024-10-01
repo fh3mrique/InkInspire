@@ -165,6 +165,34 @@
   width: 50px;
 }
 
+.contact-buyer{
+
+  display: flex;
+  width: 100%;
+  gap: 10px
+  ;
+
+}
+
+.input-tatto-form{
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.input-tatto-form input{
+  height: 50px;
+  border-radius: 10px;
+  
+  padding: 5px;
+}
+
+.text-area-input-tattoo{
+  height: 80px;
+  padding: 5px;
+}
+
 
 
 .carousel-items {
@@ -184,4 +212,53 @@
 
 .carousel-button:hover {
   background-color: #ccc;
+}
+
+.btn-interesse{
+  background-color: rgb(84, 175, 84);
+  border: none;
+  padding: 5px;
+  border-radius: 7px;
+  font-weight: bold;
+  color: white;
+}
+
+
+.modal-overlay {
+  background-color: rgba(26, 25, 25, 0.856);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 50%;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-interesse {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-interesse:hover {
+  background-color: #218838;
 }

@@ -1,5 +1,6 @@
 package com.inkIspire.api;
 
+import com.inkIspire.domain.dtos.InterestDTO;
 import com.inkIspire.domain.dtos.TattooDTO;
 import com.inkIspire.domain.entities.Tattoo;
 import com.inkIspire.services.TattooService;
@@ -66,4 +67,13 @@ public class TattooResources {
         List<Tattoo> tattoos = service.getTattoosByArtistId(artistId);
         return ResponseEntity.ok(tattoos);
     }
+
+    @PostMapping("/{id}/interest")
+    public ResponseEntity<InterestDTO> insertInterest(@PathVariable Long id, @RequestBody InterestDTO interestDTO) {
+        interestDTO.setTattooId(id);
+        InterestDTO newInterest = service.insertInterest(interestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newInterest);
+    }
+    
+
 }

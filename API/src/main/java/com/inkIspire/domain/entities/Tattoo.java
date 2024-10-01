@@ -1,10 +1,13 @@
 package com.inkIspire.domain.entities;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_tattoo")
@@ -29,6 +32,10 @@ public class Tattoo {
     @ManyToOne
     @JoinColumn(name = "artist_id")
     private Artist artist;
+
+
+    @OneToMany(mappedBy = "tattoo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Interest> interests = new HashSet<>();
 
     public Tattoo() {
 
@@ -97,6 +104,14 @@ public class Tattoo {
 
     public void setArtist(Artist artist) {
         this.artist = artist;
+    }
+
+    public Set<Interest> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(Set<Interest> interests) {
+        this.interests = interests;
     }
 
     @Override
